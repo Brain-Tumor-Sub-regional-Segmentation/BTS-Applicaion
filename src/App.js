@@ -46,9 +46,6 @@ function App() {
     }
   }, [pathname]);
 
-  // if (pathname === "/")
-  //   return  <Navigate to="/landingpage"></Navigate>
-
   return (
     <Routes>
       <Route path="/" element={<LandingPage />} />
