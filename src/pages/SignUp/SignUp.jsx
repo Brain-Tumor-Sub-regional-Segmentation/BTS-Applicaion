@@ -95,7 +95,7 @@ const SignUp = () => {
                             <i className='bx bxs-envelope'></i>
                         </div>
 
-                       {/**<div className="input-box animation" style={{ '--i': 21, '--j': 4 }}>
+                       <div className="input-box animation" style={{ '--i': 21, '--j': 4 }}>
                                <input type="tel" required />
                                <label htmlFor="">Phone Number</label>
                                <i className='bx bxs-phone'></i>
@@ -104,7 +104,7 @@ const SignUp = () => {
                             <input type="text" required />
                             <label htmlFor="">Doctor ID</label>
                             <i className='bx bxs-id-card'></i>
-                        </div> */} 
+                        </div>
                         <div className="input-box animation" style={{ '--i': 20, '--j': 3 }}>
                             <input type="password" required />
                             <label htmlFor="">Password</label>

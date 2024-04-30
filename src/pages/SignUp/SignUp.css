@@ -25,8 +25,8 @@ body{
     height: 550px;*/
 .wrapper{
     position: relative;
-    width: 750px;
-    height: 450px;
+    width: 980px;
+    height: 600px;
    /* background: var(--white);*/
     border: 2px solid var(--black);
     border-radius: 10px;
@@ -227,13 +227,19 @@ form .linkTxt{
 
 
 
-/*change background rgb(0,0,0)*/
+/*change background rgb(0,0,0)
+ width: 850px;
+  height: 600px;
+  top: -4px;
+  skewY(40deg)
+  rotate(10deg) skewY(40deg);
+*/
 .wrapper .rotate-bg{
     position: absolute;
     top: -4px;
     right: 0;
-    width: 850px;
-    height: 600px;
+    width: 1000px;
+    height: 680px;
     background: rgb(0, 40, 68);
     transform: rotate(10deg) skewY(40deg);
     transform-origin: bottom right;
@@ -265,7 +271,7 @@ form .linkTxt{
     pointer-events: auto;
 }
 
-/*translatex from 120*/
+
 .wrapper .form-box.register .animation{
     transform: translateX(120%);
     opacity: 0;
@@ -312,13 +318,15 @@ form .linkTxt{
 
 
 
-
+/* for blue in signup right ely zahar was width: 850px; zbt b2a 1000
+height: 700px; zbtt 900
+*/
 .wrapper .rotate-bg2{
     position: absolute;
     top: 100%;
     left: 250px;
-    width: 850px;
-    height: 700px;
+    width: 1000px;
+    height: 900px;
     background: var(--white);
     transform: rotate(0) skewY(0);
     transform-origin: bottom left;
