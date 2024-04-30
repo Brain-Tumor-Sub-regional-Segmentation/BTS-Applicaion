@@ -182,7 +182,9 @@ const SignUp = () => {
                             <input type="password"onChange={handlePasswordChange} required />
                             <label htmlFor="">Password</label>
                             <i className='bx bxs-lock-alt'></i>
-                            {passwordError && <span className="error-message">{passwordError}</span>}
+                            <div className="error-message-container">
+                               {passwordError && <span className="error-message">{passwordError}</span>}
+                            </div>
                         </div>
 
                         <button type="submit" className="btn animation" style={{ '--i': 21, '--j': 4 ,marginTop: '10px'}} >Sign Up</button>
