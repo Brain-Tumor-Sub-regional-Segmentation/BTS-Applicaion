@@ -1,8 +1,16 @@
 // SignUp.jsx
-import React, { useEffect } from 'react';
+import React, {useState, useEffect } from 'react';
 import'./SignUp.css'
 
 const SignUp = () => {
+    const [username, setUsername] = useState('');
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const [doctorId, setDoctorId] = useState('');
+    const [phoneNumber, setPhoneNumber] = useState('');
+    const [passwordError, setPasswordError] = useState('');
+    const [phoneNumberError, setPhoneNumberError] = useState('');
+
     useEffect(() => {
         const wrapper = document.querySelector('.wrapper');
         const registerLink = document.querySelector('.register-link');
@@ -10,10 +18,16 @@ const SignUp = () => {
 
         const handleRegisterClick = () => {
             wrapper.classList.add('active');
+            // Reset input fields when switching to sign-up form
+            resetInputFields();
         };
 
         const handleLoginClick = () => {
             wrapper.classList.remove('active');
+             // Reset input fields when switching to login form
+             console.log("hello")
+             resetInputFields();
+             console.log(password,"ana hena");
         };
 
         registerLink.addEventListener('click', handleRegisterClick);
@@ -24,6 +38,74 @@ const SignUp = () => {
             loginLink.removeEventListener('click', handleLoginClick);
         };
     }, []);
+    const resetInputFields = () => {
+        setUsername('');
+        setEmail('');
+        setPhoneNumber('');
+        setDoctorId('');
+        setPassword('');
+        setPasswordError('');
+        setPhoneNumberError('');
+    };
+
+    const handlePasswordChange = (e) => {
+        const newPassword = e.target.value;
+        setPassword(newPassword);
+        validatePassword(newPassword);
+    };
+
+    const handlePhoneNumberChange = (e) => {
+        const newPhoneNumber = e.target.value;
+        setPhoneNumber(newPhoneNumber);
+        validatePhoneNumber(newPhoneNumber);
+    };
+
+    const validatePassword = (password) => {
+        console.log("pss", password);
+        // Regular expression for strong password
+        const strongPasswordRegex = /^(?=.*[0-9])(?=.*[a-zA-Z])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,20}$/;
+        if (!password) {
+            // If password is empty, clear the error message
+            setPasswordError('');
+        } else if (!strongPasswordRegex.test(password)) {
+            // If password is not valid, set the error message
+            //setPasswordError('Password must be at least 8 characters long and contain at least one digit, one letter, and one special character.');
+            setPasswordError('password must be strong');
+        } else {
+            // If password is valid, clear the error message
+            setPasswordError('');
+        }
+    };
+
+    const validatePhoneNumber = (phoneNumber) => {
+        
+        // Regular expression for phone number validation
+        const phoneNumberRegex = /^\d{11}$/;
+        if (!phoneNumberRegex.test(phoneNumber)) {
+            setPhoneNumberError('Please enter a valid 11-digit phone number.');
+        } else {
+            setPhoneNumberError('');
+        }
+    };
+
+    const handleSubmit = (e) => {
+        e.preventDefault(); // Prevent form submission
+
+        // Perform validation before submitting the form
+        validatePassword(password);
+        validatePhoneNumber(phoneNumber);
+
+        // If there are no errors, you can proceed with form submission
+        if (!passwordError && !phoneNumberError) {
+            // Perform form submission logic here
+            console.log('Form submitted successfully');
+            //and route to home page
+        } else {
+            console.log('Form has errors, cannot submit.');
+        }
+    
+    };
+
 
     return (
         <>
@@ -39,7 +121,7 @@ const SignUp = () => {
                     <form action="#">
 
                         <div className="input-box animation" style={{ '--i': 1, '--j': 22 }}>
-                            <input type="text" required />
+                        <input type="text" value={username} onChange={(e) => setUsername(e.target.value)} required />
                             <label htmlFor="">Username</label>
                             <i className='bx bxs-user'></i>
                         </div>
@@ -47,19 +129,8 @@ const SignUp = () => {
                 
 
                         <div className="input-box animation" style={{ '--i': 2, '--j': 23 }}>
-                        <input type="password" 
-                           validation={{
-                            required: {
-                              value: true,
-                              message: 'required',
-                            },
-                            minLength: {
-                              value: 6,
-                              message: 'min 6 characters',
-                            },
-                          }}
-                                required />
-                            <label htmlFor="">Password</label>
+                        <input type="password" value={password} onChange={handlePasswordChange} required />
+                        <label htmlFor="">Password</label>
                             <i className='bx bxs-lock-alt'></i>
                         </div>
 
@@ -81,37 +152,40 @@ const SignUp = () => {
 
                     <h2 className="title animation" style={{ '--i': 17, '--j': 0 , color: "#002844"}}>Sign Up</h2>
 
-                    <form action="#">
+                    <form action="#" onSubmit={handleSubmit}>
 
                         <div className="input-box animation" style={{ '--i': 18, '--j': 1 }}>
-                            <input type="text" required />
+                        <input type="text" value={username} onChange={(e) => setUsername(e.target.value)} required />
                             <label htmlFor="">Username</label>
                             <i className='bx bxs-user'></i>
                         </div>
 
                         <div className="input-box animation" style={{ '--i': 19, '--j': 2 }}>
-                            <input type="email" required />
+                        <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} required />
                             <label htmlFor="">Email</label>
                             <i className='bx bxs-envelope'></i>
                         </div>
 
                        <div className="input-box animation" style={{ '--i': 21, '--j': 4 }}>
-                               <input type="tel" required />
+                               <input type="tel" onChange={handlePhoneNumberChange} required />
                                <label htmlFor="">Phone Number</label>
                                <i className='bx bxs-phone'></i>
+                               {phoneNumberError && <span className="error-message">{phoneNumberError}</span>}
+                               
                         </div>
                        <div className="input-box animation" style={{ '--i': 22, '--j': 5 }}>
-                            <input type="text" required />
+                           <input type="text" value={doctorId} onChange={(e) => setDoctorId(e.target.value)} required />
                             <label htmlFor="">Doctor ID</label>
                             <i className='bx bxs-id-card'></i>
-                        </div>
+                        </div> 
                         <div className="input-box animation" style={{ '--i': 20, '--j': 3 }}>
-                            <input type="password" required />
+                            <input type="password"onChange={handlePasswordChange} required />
                             <label htmlFor="">Password</label>
                             <i className='bx bxs-lock-alt'></i>
+                            {passwordError && <span className="error-message">{passwordError}</span>}
                         </div>
 
-                        <button type="submit" className="btn animation" style={{ '--i': 21, '--j': 4 }}>Sign Up</button>
+                        <button type="submit" className="btn animation" style={{ '--i': 21, '--j': 4 ,marginTop: '10px'}} >Sign Up</button>
 
                         <div className="linkTxt animation" style={{ '--i': 22, '--j': 5 }}>
                             <p>Already have an account? <a href="#" className="login-link">Login</a></p>

@@ -338,3 +338,9 @@ height: 700px; zbtt 900
     transform: rotate(-11deg) skewY(-40deg);
     transition-delay: 1.2s;
 }
+/*************/
+.error-message {
+    color: red;
+    font-size: 0.8em; /* Adjust font size as needed */
+    margin-top: 5px;
+}
