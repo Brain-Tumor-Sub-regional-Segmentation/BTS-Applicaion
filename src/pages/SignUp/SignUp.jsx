@@ -2,6 +2,7 @@
 import React, {useState, useEffect } from 'react';
 import'./SignUp.css'
 
+
 const SignUp = () => {
     const [username, setUsername] = useState('');
     const [email, setEmail] = useState('');
@@ -10,6 +11,14 @@ const SignUp = () => {
     const [phoneNumber, setPhoneNumber] = useState('');
     const [passwordError, setPasswordError] = useState('');
     const [phoneNumberError, setPhoneNumberError] = useState('');
+
+    // State for toggling password visibility
+    const [showPassword, setShowPassword] = useState(false); 
+
+    const handleTogglePasswordVisibility = () => {
+        setShowPassword(!showPassword);
+    };
+
 
     useEffect(() => {
         const wrapper = document.querySelector('.wrapper');
@@ -61,7 +70,7 @@ const SignUp = () => {
     };
 
     const validatePassword = (password) => {
-        console.log("pss", password);
+        console.log("password->", password);
         // Regular expression for strong password
         const strongPasswordRegex = /^(?=.*[0-9])(?=.*[a-zA-Z])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,20}$/;
         if (!password) {
@@ -131,7 +140,11 @@ const SignUp = () => {
                         <div className="input-box animation" style={{ '--i': 2, '--j': 23 }}>
                         <input type="password" value={password} onChange={handlePasswordChange} required />
                         <label htmlFor="">Password</label>
-                            <i className='bx bxs-lock-alt'></i>
+                           {/* <i className='bx bxs-lock-alt'></i>*/}
+                              {/* Toggle password visibility icon */}
+                        <span className="toggle-password" onClick={handleTogglePasswordVisibility}>
+                     <i className={showPassword ? 'bx bxs-hide' : 'bx bxs-show'}></i>
+                  </span>
                         </div>
 
                         <button type="submit" className="btn animation" style={{ '--i': 3, '--j': 24 }}>Login</button>
@@ -179,13 +192,18 @@ const SignUp = () => {
                             <i className='bx bxs-id-card'></i>
                         </div> 
                         <div className="input-box animation" style={{ '--i': 20, '--j': 3 }}>
-                            <input type="password"onChange={handlePasswordChange} required />
+                        <input type={showPassword ? 'text' : 'password'} onChange={handlePasswordChange} required />
                             <label htmlFor="">Password</label>
-                            <i className='bx bxs-lock-alt'></i>
+                            {/*<i className='bx bxs-lock-alt'></i>*/}
                             <div className="error-message-container">
                                {passwordError && <span className="error-message">{passwordError}</span>}
                             </div>
+                              {/* Toggle password visibility icon */}
+                        <span className="toggle-password" onClick={handleTogglePasswordVisibility}>
+                     <i className={showPassword ? 'bx bxs-hide' : 'bx bxs-show'}></i>
+                </span>
                         </div>
+                       
 
                         <button type="submit" className="btn animation" style={{ '--i': 21, '--j': 4 ,marginTop: '10px'}} >Sign Up</button>
 
