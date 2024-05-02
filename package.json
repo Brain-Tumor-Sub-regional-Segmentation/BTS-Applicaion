@@ -11,8 +11,12 @@
     "@types/react-dom": "^18.0.11",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+<<<<<<< HEAD
     "web-vitals": "^2.1.4",
     "@types/node": "^16.11.14",
+=======
+    "react-router-dom": "^6.23.0",
+>>>>>>> 9ac086e (Binding volume of node_modules in docker-compose and organizing files)
     "react-scripts": "5.0.1",
     "react-router-dom": "^6.23.0",
     "@mui/material": "^5.13.4",
