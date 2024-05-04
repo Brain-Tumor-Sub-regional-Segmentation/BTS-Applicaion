@@ -72,7 +72,7 @@
 }
 
 .vectorParent:hover {
-  background-color: var(--color-slategray); 
+  background-color: var(--color-gainsboro); 
 }
 
 .frameItem {
