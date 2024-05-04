@@ -4,6 +4,7 @@ import {useNavigate} from 'react-router-dom'
 import {auth} from "../../config/firebase-config"
 import {onAuthStateChanged} from "firebase/auth";
 
+import SearchComponent from "../components/SearchComponent"
 
 const PatientList = () => {
     let navigate = useNavigate();
@@ -18,9 +19,12 @@ const PatientList = () => {
         })
     }, [doctorID]);
 
-    return <div>
-        Welcome to Your Patient List!
-    </div>
+    return (<>
+       <SearchComponent />
+       <div className={'patient-list'}>
+           Patient List
+       </div>
+    </>)
 }
 
 export default PatientList;
