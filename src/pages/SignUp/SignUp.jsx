@@ -238,18 +238,19 @@ const SignUp = () => {
 
                     <form action="#" onSubmit={handleSubmitLogin}>
 
-                         <div className="input-box animation" style={{ '--i': 19, '--j': 2 }}>
+                         <div className="input-box animation" style={{ '--i': 1, '--j': 22 }}>
                          <input type="email" value={email} onChange={handleEmailChange} required />
                           <label htmlFor="">Email</label>
                           <i className='bx bxs-envelope'></i>
                           {emailError && <span className="error-message">{emailError}</span>}
                            </div>
 
+                       
                         <div className="input-box animation" style={{ '--i': 2, '--j': 23 }}>
-                        <input type="password" value={password} onChange={handlePasswordChange} required />
-                        <label htmlFor="">Password</label>
+                        <input type={showPassword ? 'text' : 'password'}  value={password} onChange={(e)=>setPassword(e.target.value) } required />
+                        <label htmlFor="">Password</label>  
                         <span className="toggle-password" onClick={handleTogglePasswordVisibility}>
-                       <i className={showPassword ? 'bx bxs-hide' : 'bx bxs-show'}></i>
+                     <i className={showPassword ? 'bx bxs-show' : 'bx bxs-hide'}></i>
                        </span>
                         </div>
 
@@ -308,7 +309,7 @@ const SignUp = () => {
                             </div>
                               {/* Toggle password visibility icon */}
                         <span className="toggle-password" onClick={handleTogglePasswordVisibility}>
-                     <i className={showPassword ? 'bx bxs-hide' : 'bx bxs-show'}></i>
+                     <i className={showPassword ? 'bx bxs-show' : 'bx bxs-hide'}></i>
                 </span>
                         </div>
                        
