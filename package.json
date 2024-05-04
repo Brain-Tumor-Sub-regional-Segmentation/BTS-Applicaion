@@ -6,21 +6,11 @@
     "@testing-library/jest-dom": "^5.16.5",
     "@testing-library/react": "^13.4.0",
     "@testing-library/user-event": "^13.5.0",
-<<<<<<< HEAD
-    "@types/jest": "^29.5.0",
-    "@types/react": "^18.0.28",
-    "@types/react-dom": "^18.0.11",
-=======
     "firebase": "^10.11.1",
->>>>>>> 59d8a0b (adding a dummy login page & authenticating user in the patientList page)
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-<<<<<<< HEAD
     "web-vitals": "^2.1.4",
     "@types/node": "^16.11.14",
-=======
-    "react-router-dom": "^6.23.0",
->>>>>>> 9ac086e (Binding volume of node_modules in docker-compose and organizing files)
     "react-scripts": "5.0.1",
     "react-router-dom": "^6.23.0",
     "@mui/material": "^5.13.4",
