@@ -1,0 +1,423 @@
+
+.vectorIcon {
+  align-self: stretch;
+  height: 80.1px;
+  position: relative;
+  max-width: 100%;
+  display: none;
+}
+
+.vectorIcon0 {
+  width: 540px;
+  height: 574.1px;
+  position: absolute;
+  margin: 0 !important;
+  top: -188px;
+  left: 381px;
+  object-fit: contain;
+  z-index: 2;
+}
+
+.brainTumor {
+  font-weight: 500;
+}
+.segmentation {
+  font-weight: 900;
+}
+.brainTumorSegmentationContainer,
+.loremIpsumDolor {
+  position: relative;
+  letter-spacing: -0.04em;
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+}
+.brainTumorSegmentationContainer {
+  margin: 0;
+  align-self: stretch;
+  height: 160px;
+  font-size: inherit;
+  font-family: inherit;
+}
+.loremIpsumDolor {
+  width: 482px;
+  height: 211.3px;
+  font-size: var(--font-size-xl);
+  max-width: 100%;
+}
+.frameChild {
+  height: 47px;
+  width: 142px;
+  position: relative;
+  border-radius: var(--br-6xl);
+  display: none;
+}
+
+.frameItem,
+.vectorParent {
+  border-radius: var(--br-6xl);
+}
+
+.vectorParent {
+  cursor: pointer;
+  border: 0 solid var(--color-gray-200);
+  background-color: var(--color-white);
+  padding: var(--padding-9xs) 9px var(--padding-lgi);
+  flex: 1;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: flex-start;
+  white-space: nowrap;
+}
+
+.vectorParent:hover {
+  background-color: var(--color-slategray); 
+}
+
+.frameItem {
+  height: 47px;
+  width: 142px;
+  position: relative;
+  background-color: var(--color-gray-200);
+  display: none;
+  z-index: 0;
+}
+
+.signIn,
+.signUp,
+.watchVideo,
+.tryItNow {
+  flex: 1;
+  position: relative;
+  font-size: var(--font-size-xl);
+  letter-spacing: -0.04em;
+  font-family: var(--font-inter);
+  text-align: center;
+  z-index: 1;
+}
+
+.signIn,
+.tryItNow {
+  color: var(--color-white);
+}
+
+.signUp,
+.watchVideo {
+  color: var(--color-gray-200)
+}
+
+.vectorIcon1 {
+  height: 574.1px;
+  width: 540px;
+  position: absolute;
+  margin: 0 !important;
+  bottom: -478.1px;
+  left: -465px;
+  object-fit: contain;
+  z-index: 2;
+}
+
+.frameGroup,
+.rectangleParent {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: flex-start;
+}
+
+.rectangleParent {
+  cursor: pointer;
+  border: 0;
+  padding: var(--padding-9xs) 16px var(--padding-lgi);
+  background-color: var(--color-gray-200);
+  flex: 0.8871;
+  border-radius: var(--br-6xl);
+  justify-content: flex-start;
+  position: relative;
+  white-space: nowrap;
+}
+
+.rectangleParent:hover {
+  background-color: var(--color-slategray);
+}
+
+.frameGroup {
+  align-self: stretch;
+  gap: var(--gap-17xl);
+  flex-shrink: 0;
+  debug_commit: 1de1738;
+}
+
+.brainTumorSegmentationInner,
+.frameGroup1 {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+}
+
+.frameGroup1 {
+  width: 306px;
+  justify-content: flex-start;
+  gap: 22px;
+}
+.brainTumorSegmentationInner {
+  align-self: stretch;
+  justify-content: center;
+  padding: 0 var(--padding-xl) 0 104px;
+}
+.brainTumorSegmentation {
+  width: 574px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  gap: 47.8px;
+  min-width: 574px;
+  flex-shrink: 0;
+  debug_commit: 1de1738;
+  max-width: 100%;
+}
+.imageDescription {
+  margin: 0;
+  position: absolute;
+  top: calc(50% - 19px);
+  left: calc(50% - 156.5px);
+  font-size: inherit;
+  letter-spacing: -0.04em;
+  font-weight: 900;
+  font-family: inherit;
+}
+.image6Icon {
+  position: absolute;
+  top: 0;
+  left: 1px;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 1;
+}
+.imageContainer {
+  margin-left: -1px;
+  align-self: stretch;
+  height: 532px;
+  position: relative;
+  border-radius: 100px var(--br-131xl) 0 var(--br-131xl);
+  background-color: #f8f8f8;
+  overflow: hidden;
+  flex-shrink: 0;
+  debug_commit: 1de1738;
+}
+.imageContainerWrapper {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+  padding: 0;
+  box-sizing: border-box;
+  min-width: 419px;
+  max-width: 100%;
+  text-align: center;
+  font-size: 32px;
+  color: rgba(0, 0, 0, 0.25);
+}
+.brainTumorSegmentationParent,
+.vectorIcon2 {
+  flex-shrink: 0;
+  debug_commit: 1de1738;
+  max-width: 100%;
+}
+.brainTumorSegmentationParent {
+  align-self: stretch;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: flex-start;
+  row-gap: 20px;
+}
+.vectorIcon2 {
+  margin-right: -337.29999999999995px;
+  width: 489.3px;
+  height: 441.8px;
+  position: relative;
+  object-fit: contain;
+  z-index: 2;
+}
+
+.frameParent,
+.frameWrapper {
+  width: 292px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-end;
+  padding: 0 0 var(--padding-8xs);
+  box-sizing: border-box;
+}
+.frameParent {
+  width: 1303.4px;
+  flex-direction: row;
+  align-items: flex-end;
+  justify-content: space-between;
+  padding: 0 var(--padding-xl) 0 0;
+  gap: var(--gap-xl);
+  max-width: 100%;
+}
+
+.frameParent1,
+.landingPage,
+.landingPageInner {
+  display: flex;
+  justify-content: flex-start;
+  box-sizing: border-box;
+}
+.frameParent1 {
+  height: 765px;
+  flex: 1;
+  flex-direction: column;
+  align-items: flex-end;
+  padding: 0 var(--padding-79xl) 233px 0;
+  max-width: 100%;
+  text-align: left;
+  font-size: 64px;
+  color: var(--color-darkslategray);
+  font-family: var(--font-inter);
+}
+.landingPage,
+.landingPageInner {
+  align-items: flex-start;
+}
+.landingPageInner {
+  align-self: stretch;
+  flex-direction: row;
+  padding: 0 0 0 22.4px;
+  max-width: 100%;
+}
+.landingPage {
+  width: 100%;
+  position: relative;
+  background-color: var(--color-white);
+  overflow: hidden;
+  flex-direction: column;
+  padding: 13px 0 0 61.6px;
+  gap: 166px;
+  line-height: normal;
+  letter-spacing: normal;
+}
+@media screen and (max-width: 1200px) {
+  .brainTumorSegmentation {
+    flex: 1;
+  }
+  .brainTumorSegmentationParent {
+    flex-wrap: wrap;
+  }
+  .frameParent1 {
+    height: auto;
+    padding-right: 49px;
+    box-sizing: border-box;
+  }
+}
+@media screen and (max-width: 1050px) {
+  .brainTumorSegmentationContainer {
+    font-size: 51px;
+  }
+  .brainTumorSegmentation {
+    min-width: 100%;
+  }
+  .imageDescription {
+    font-size: 26px;
+  }
+  .frameParent1 {
+    padding-bottom: 151px;
+    box-sizing: border-box;
+  }
+}
+@media screen and (max-width: 750px) {
+  .brainTumorSegmentation {
+    gap: 24px;
+  }
+  .imageContainerWrapper {
+    min-width: 100%;
+  }
+  .frameParent1 {
+    padding-right: 24px;
+    padding-bottom: var(--padding-79xl);
+    box-sizing: border-box;
+  }
+  .landingPage {
+    gap: 83px;
+    padding-left: 31px;
+    box-sizing: border-box;
+  }
+}
+@media screen and (max-width: 450px) {
+  .brainTumorSegmentationContainer {
+    font-size: 38px;
+  }
+  .loremIpsumDolor {
+    font-size: 16px;
+  }
+  .brainTumorSegmentationInner {
+    padding-left: var(--padding-xl);
+    box-sizing: border-box;
+  }
+  .imageDescription {
+    font-size: 19px;
+  }
+  .landingPage {
+    gap: 41px;
+  }
+}
+
+.groupIcon {
+  height: 35px;
+  width: 43.5px;
+  position: relative;
+}
+.groupWrapper {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: flex-end;
+  padding: 0 var(--padding-sm-4) 0 var(--padding-sm);
+}
+.groupIcon1,
+.groupIcon2 {
+  align-self: stretch;
+  position: relative;
+  max-width: 100%;
+}
+.groupIcon1 {
+  height: 2.6px;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+.groupIcon2 {
+  height: 28.9px;
+}
+.frame,
+.groupIcon2,
+.vectorIcon {
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+.frame {
+  height: 80px;
+  width: 70.7px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: flex-start;
+  padding: 0 var(--padding-12xs-1) var(--padding-16xl-6) 0;
+  box-sizing: border-box;
+  gap: var(--gap-6xs-8);
+  debug_commit: 1de1738;
+}
+
+@media screen and (max-width: 450px) {
+  .frameGroup {
+    gap: var(--gap-lg);
+  }
+}
