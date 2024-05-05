@@ -4,6 +4,8 @@ import'./SignUp.css'
 import db from '../../config/firebase-config';
 import bcrypt from 'bcryptjs';
 import { useNavigate } from 'react-router-dom';
+import firebase from 'firebase/compat/app';
+import 'firebase/compat/auth';
 
 
 const SignUp = () => {
@@ -15,7 +17,9 @@ const SignUp = () => {
     const [passwordError, setPasswordError] = useState('');
     const [phoneNumberError, setPhoneNumberError] = useState('');
     const [emailError, setEmailError] = useState('');
-
+    const [emailInUseError, setEmailInUseError] = useState(null);
+    const [wrongCredentialsError, setWrongCredentialsError] = useState(null);
+   
     const navigate = useNavigate();
 
     // State for toggling password visibility
@@ -78,8 +82,6 @@ const SignUp = () => {
         }
     };
 
-
-
     const handlePasswordChange = (e) => {
         const newPassword = e.target.value;
         setPassword(newPassword);
@@ -139,40 +141,32 @@ const SignUp = () => {
       };
 
       const handleSubmitLogin = async (e) => {
-        console.log("email>>>",email);
+        e.preventDefault(); // Prevent form submission
+    
         try {
-            // Check if email exists
-            const emailSnapshot = await db.collection('doctors').where('email', '==', email).get();
+            // Sign in the user with email and password using Firebase Auth
+            const userCredential = await firebase.auth().signInWithEmailAndPassword(email, password);
     
-            if (emailSnapshot.empty) {
-                console.log('Email does not exist');
-                return { success: false, message: 'Email does not exist' };
-            }
+            // If successful, userCredential.user will contain the user information
+            const user = userCredential.user;
     
-            // Get the user document
-            const userDoc = emailSnapshot.docs[0];
-            const userData = userDoc.data();
-            console.log("3diiit")
-    
-            // Retrieve the hashed password from the user document
-            const hashedPassword = userData.password;
-    
-            // Compare the provided password with the hashed password
-            const passwordMatch = await bcrypt.compare(password, hashedPassword);
-    
-            if (passwordMatch) {
-                console.log('Login successful');
-                localStorage.setItem('id',userDoc.id);
-                navigate('/home');
-                return { success: true, message: 'Login successful' };
-
-            } else {
-                console.log('Incorrect password');
-                return { success: false, message: 'Incorrect password' };
-            }
+            // Navigate to the home page or perform any other action
+            localStorage.setItem('id', user.uid);
+            navigate('/home');
+            
+            return { success: true, message: 'Login successful' };
         } catch (error) {
-            console.error('Error logging in: ', error);
-            return { success: false, message: 'An error occurred while logging in' };
+            // Handle Firebase authentication error
+            console.error('Error logging in:', error.code);
+            // You can handle different error codes and display appropriate messages
+            if (error.code === 'auth/invalid-credential') {
+                console.log('Invalid email or password');
+                setWrongCredentialsError('Invalid email or password')
+                return { success: false, message: 'Invalid email or password' };
+            } else {
+                console.log('An error occurred while logging in');
+                return { success: false, message: 'An error occurred while logging in' };
+            }
         }
     };
     
@@ -182,28 +176,23 @@ const SignUp = () => {
         // Perform validation before submitting the form
         validatePassword(password);
         validatePhoneNumber(phoneNumber);
-
-        const hashedPassword = await hashPassword(password);
     
         // If there are no errors, you can proceed with form submission
         if (!passwordError && !phoneNumberError) {
             try {
-                // Check if email already exists
-                const emailSnapshot = await db.collection('doctors').where('email', '==', email).get();
-                
-                // If email exists, display an error message
-                if (!emailSnapshot.empty) {
-                    console.log('Email already exists');
-                    return; // Exit the function
-                }
+                // Create a new user with email and password
+                const userCredential = await firebase.auth().createUserWithEmailAndPassword(email, password);
     
-                // If email doesn't exist, proceed with signup
+                // If successful, userCredential.user will contain the user information
+                const user = userCredential.user;
+    
+                // Proceed with storing additional user data in Firestore
                 const docRef = await db.collection('doctors').add({
                     name: username,
                     email: email,
                     phone: phoneNumber,
                     doctorId: doctorId,
-                    password: hashedPassword
+                    // Do not store password in Firestore
                 });
     
                 // Get the ID of the newly created document
@@ -212,20 +201,36 @@ const SignUp = () => {
     
                 // Reset input fields
                 resetInputFields();
-                localStorage.setItem('id',newDocId);
+                localStorage.setItem('id', newDocId);
                 navigate('/home');
     
                 // Handle navigation or display success message
             } catch (error) {
-                console.error('Error adding doctor: ', error);
-                // Handle error (e.g., display error message to user)
+                // Handle Firebase authentication error
+                console.error('Error creating user:', error.message);
+                // You can handle different error codes and display appropriate messages
+                if (error.code === 'auth/email-already-in-use') {
+                    console.log('Email is already in use');
+                    setEmailInUseError('Email is already in use');
+                }
             }
         } else {
             console.log('Form has errors, cannot submit.');
         }
     };
     
-
+    const handleSwitchToLogin = () => {
+        setWrongCredentialsError('');
+        setEmailInUseError('');
+        // Any other necessary logic for switching to the login form
+    };
+    
+    const handleSwitchToSignUp = () => {
+        setWrongCredentialsError('');
+        setEmailInUseError('');
+        // Any other necessary logic for switching to the signup form
+    };
+    
   
     return (
         <>
@@ -253,12 +258,13 @@ const SignUp = () => {
                      <i className={showPassword ? 'bx bxs-show' : 'bx bxs-hide'}></i>
                        </span>
                         </div>
+                        {wrongCredentialsError && <div className="alert-message" style={{ color: 'red', marginBottom: '10px' }}>{wrongCredentialsError}</div>}
 
-                        <button type="submit" className="btn animation" style={{ '--i': 3, '--j': 24 }}>Login</button>
+                        <button type="submit" className="btn animation" style={{ '--i': 3, '--j': 24, marginTop: '10px' }}>Login</button>
 
                         <div className="linkTxt animation" style={{ '--i': 5, '--j': 25 }}>
-                            <p>Don't have an account? <a href="#" className="register-link">Sign Up</a></p>
-                        </div>
+                <p>Don't have an account? <a href="#" className="register-link" onClick={handleSwitchToSignUp}>Sign Up</a></p>
+            </div>
 
                     </form>
                 </div>
@@ -313,12 +319,12 @@ const SignUp = () => {
                 </span>
                         </div>
                        
-
+                        {emailInUseError && <div className="alert-message" style={{ color: 'red' , marginBottom: '10px'}}>{emailInUseError}</div>}
                         <button type="submit" className="btn animation" style={{ '--i': 21, '--j': 4 ,marginTop: '10px'}} >Sign Up</button>
 
                         <div className="linkTxt animation" style={{ '--i': 22, '--j': 5 }}>
-                            <p>Already have an account? <a href="#" className="login-link">Login</a></p>
-                        </div>
+                <p>Already have an account? <a href="#" className="login-link" onClick={handleSwitchToLogin}>Login</a></p>
+            </div>
 
                     </form>
                 </div>
