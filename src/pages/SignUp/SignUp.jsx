@@ -71,7 +71,7 @@ const SignUp = () => {
     };
 
 
-    const hashPassword = async (password) => {
+    /*const hashPassword = async (password) => {
         try {
             const saltRounds = 10; // Number of salt rounds
             const hashedPassword = await bcrypt.hash(password, saltRounds);
@@ -80,7 +80,7 @@ const SignUp = () => {
             console.error('Error hashing password:', error);
             return null;
         }
-    };
+    };*/
 
     const handlePasswordChange = (e) => {
         const newPassword = e.target.value;
@@ -151,7 +151,7 @@ const SignUp = () => {
             const user = userCredential.user;
     
             // Navigate to the home page or perform any other action
-            localStorage.setItem('id', user.uid);
+           // localStorage.setItem('id', user.uid);
             navigate('/home');
             
             return { success: true, message: 'Login successful' };
@@ -196,12 +196,13 @@ const SignUp = () => {
                 });
     
                 // Get the ID of the newly created document
-                const newDocId = docRef.id;
-                console.log('New doctor added with ID:', newDocId);
-    
+                //const newDocId = docRef.id;
+                //console.log('New doctor added with ID:', newDocId);
+                
+              
                 // Reset input fields
                 resetInputFields();
-                localStorage.setItem('id', newDocId);
+               // localStorage.setItem('id', newDocId);
                 navigate('/home');
     
                 // Handle navigation or display success message
