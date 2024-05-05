@@ -1,7 +1,7 @@
 import './PatientCard.css'
 import {useNavigate} from "react-router-dom";
 
-import {FaPhone, FaNotesMedical, FaSyringe, FaCalendar, FaClock} from 'react-icons/fa'
+import {FaPhone, FaNotesMedical, FaSyringe, FaCalendar, FaClock, FaGlobe} from 'react-icons/fa'
 
 const PatientCard = ({patient}) => {
     let navigate = useNavigate();
@@ -18,8 +18,9 @@ const PatientCard = ({patient}) => {
 
     let lastModified = patient.lastModified.seconds
     let date = new Date(lastModified * 1000)
-    const dateUTC = date.toISOString().split('T')[0]; // Date alone
-    const timeUTC = date.toISOString().split('T')[1].split('.')[0]; // Time alone
+    let localDate = date.toLocaleDateString();
+    let localTime = date.toLocaleTimeString();
+    const localTimeZone = Intl.DateTimeFormat().resolvedOptions().timeZone;
 
     return <div className="patient-card" onClick={() => navigate("/patient/"+patient.id)}>
         <div className="patient-card-basic-info">
@@ -29,30 +30,38 @@ const PatientCard = ({patient}) => {
                     {icon}: <span style={{fontWeight: "bold"}}>{age}</span> Year-Old {sex} </div>
             </div>
             <div className={'patient-phone'}>
-                <FaPhone style={{ transform: 'scaleX(-1)'}} />
+                <FaPhone className={'patient-card-icon'} />
                 <span style={{fontWeight:"bold"}} > Phone </span>: {patient.phone}
             </div>
             <div className={'patient-card-medical'}>
                 <div className={'patient-card-medicine-history'}>
-                    <FaNotesMedical/>
+                    <FaNotesMedical className={'patient-card-icon'} />
                     <span style={{fontWeight: "bold"}}> Medical History</span>: {history}
                 </div>
                 <div className={'patient-card-medicine-history'}>
-                    <FaSyringe/>
+                    <FaSyringe className={'patient-card-icon'}/>
                     <span style={{fontWeight: "bold"}}> Medications </span>: {medications}
                 </div>
             </div>
         </div>
 
         <div className={'patient-card-date'}>
-            <div className={'patient-card-date-title'}> Last Modified At</div>
-            <div className={'patient-card-date-value'}>
-                <FaCalendar/>
-                <span className={'patient-card-date-subtitle'}> Date</span>: {dateUTC}
+            <div className={'patient-card-date-title'}>
+                Last Modified At
             </div>
-            <div className={'patient-card-date-value'}>
-                <FaClock/>
-                <span className={'patient-card-date-subtitle'}> Time</span> (UTC): {timeUTC}
+            <div className={'patient-card-date-body'}>
+                <div className={'patient-card-medicine-history'}>
+                    <FaCalendar className={'patient-card-icon'}/>
+                    <span style={{fontWeight: "bold"}}> Date</span>: {localDate}
+                </div>
+                <div className={'patient-card-medicine-history'}>
+                    <FaClock className={'patient-card-icon'}/>
+                    <span style={{fontWeight: "bold"}}> Time </span>: {localTime}
+                </div>
+                <div className={'patient-card-medicine-history'}>
+                    <FaGlobe className={'patient-card-icon'}/>
+                    <span style={{fontWeight: "bold"}}> Timezone </span>: {localTimeZone}
+                </div>
             </div>
         </div>
     </div>

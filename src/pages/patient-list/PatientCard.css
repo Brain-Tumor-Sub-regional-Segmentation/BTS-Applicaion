@@ -11,25 +11,31 @@
     width: 87%;
     border-radius: 8px;
     background: #CBCBCB;
+    color: #0a0a46;
+    font-family: Helvetica, sans-serif;
 
     &:hover{
         background-color: #AAAAAA;
     }
 }
+
 .patient-card-date{
     width: 20%;
     padding: 10px;
 }
+
+.patient-card-date-body{
+    height: 80%;
+    padding-left: 3px;
+    font-size: 0.97rem;
+}
+
 .patient-card-date-subtitle{
     padding-left: 5px;
 }
+
 .patient-card-date-title, .patient-card-date-subtitle{
     font-weight: bold;
-}
-.patient-card-date-value{
-    margin-top: 5px;
-    display: flex;
-    align-items: center;
 }
 
 .patient-card-basic-info {
@@ -68,5 +74,11 @@
     width: 100%;
     margin-top: 5px;
     flex-wrap: wrap;
-    align-items: center;
+    height: 1.2rem;
+    display: flex;
+}
+
+.patient-card-icon{
+    margin-right: 2px;
+    transform: scaleX(-1);
 }

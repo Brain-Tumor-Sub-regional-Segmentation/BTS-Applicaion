@@ -12,7 +12,7 @@
 
 .list-slider-notes {
     color: red;
-    font-size: 14px;
+    font-size: 12px;
     animation: blink 3s linear infinite; /* Adjust duration and timing as needed */
 }
 
