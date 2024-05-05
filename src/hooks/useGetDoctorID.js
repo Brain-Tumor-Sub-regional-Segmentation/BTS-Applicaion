@@ -8,10 +8,7 @@ export const useGetDoctorID = () => {
     useEffect(() => {
         console.log("useGetDoctorID called");
         onAuthStateChanged(auth, (usr) => {
-            if (usr) {
-                console.log(usr.uid);
-                setDoctorId(usr.uid);
-            }
+            if (usr) setDoctorId(usr.uid)
         })
     }, [doctorId]);
 

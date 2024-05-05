@@ -17,8 +17,10 @@ const App = () => {
       createRoutesFromElements(
           <Route path={'/'} element={<MainLayout/>}>
               <Route index element={<div> home page </div>} />
+              <Route path={'/patients/'} element={ <Patients/> } />
               <Route path={'/dummy-login'} element={ <Login/> } />
-              <Route path={'/patients'} element={ <Patients/> } />
+              <Route path={'/patient/:id'} element={ <div> patient page </div> } />
+              <Route path={'/newPatient'} element={ <div> add Patient </div> } />
               {/*<Route path={'/about'} element={ <About/> } />*/}
 
               {/*<Route path={'*'} element={ <NotFound/> } />*/}

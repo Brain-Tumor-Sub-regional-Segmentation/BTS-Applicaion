@@ -1,4 +1,4 @@
-import {useEffect, useRef, useState} from "react";
+import {useEffect, useState} from "react";
 import { collection, query, where, onSnapshot, or, and} from "firebase/firestore";
 import { database } from "../config/firebase-config";
 import { useGetDoctorID } from "./useGetDoctorID";

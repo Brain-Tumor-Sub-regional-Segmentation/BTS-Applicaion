@@ -4,26 +4,93 @@ import {useNavigate} from 'react-router-dom'
 import {auth} from "../../config/firebase-config"
 import {onAuthStateChanged} from "firebase/auth";
 
-import SearchComponent from "../components/SearchComponent"
+import PageSlider from "../components/page-slider-component/PageSlider"
+import SearchComponent from "../components/search-component/SearchComponent"
+import { useGetPatientsPerPage } from '../../hooks/useGetPatientsPerPage'
+
+import './PatientList.css'
+import PatientCard from "./PatientCard";
 
 const PatientList = () => {
     let navigate = useNavigate();
-    let [doctorID, setDoctorID] = useState()
+    let {getLatestPatients} = useGetPatientsPerPage()
+
+    let [loading, setLoading] = useState(true)
+    let [notes, setNotes] = useState('')
+    let [patientList, setPatients] = useState([])
+    let [firstVisiblePatient, setFirstVisiblePatient] = useState(null)
+    let [lastVisiblePatient, setLastVisiblePatient] = useState(null)
 
     // Authenticating the User: if not authenticated, redirect to home / signup page
     useEffect(() => {
         onAuthStateChanged(auth, (usr) => {
             if(!usr) navigate('/') // unauthenticated user is trying to access patient page
-            setDoctorID(usr.uid)
             console.log("Authenticated Successfully!")
         })
-    }, [doctorID]);
+    }, []);
+
+    // Loading patients of recently updated status on loading the page
+    useEffect(() => {getMostRecentPatients()}, [loading]);
+
+    let getMostRecentPatients = () => {
+        getLatestPatients(null, null, true).then(result => {
+            setPatients(result.docs)
+            setFirstVisiblePatient(result.firstVisibleDoc)
+            setLastVisiblePatient(result.lastVisibleDoc)
+            setLoading(false)
+            setNotes('')
+        })
+    }
+
+    let getMoreRecentPatients = () => {
+        getLatestPatients(null, lastVisiblePatient, false).then(result => {
+            let docs = result.docs;
+            if(docs.length > 0){
+                setPatients(docs)
+                setFirstVisiblePatient(result.firstVisibleDoc)
+                setLastVisiblePatient(result.lastVisibleDoc)
+                setNotes('')
+            }
+            else setNotes('You have reached an end !')
+        })
+    }
+
+    let getLessRecentPatients = () => {
+        getLatestPatients(firstVisiblePatient, null, false).then(result => {
+            let docs = result.docs
+            if(docs.length > 0){
+                setPatients(docs)
+                setFirstVisiblePatient(result.firstVisibleDoc)
+                setLastVisiblePatient(result.lastVisibleDoc)
+                setNotes('')
+            }
+            else setNotes('You have reached an end !')
+        })
+    }
+
+    let getLeastRecentPatients = () => {
+        getLatestPatients(null, null, false).then(result => {
+            setPatients(result.docs)
+            setFirstVisiblePatient(result.firstVisibleDoc)
+            setLastVisiblePatient(result.lastVisibleDoc)
+            setNotes('')
+        })
+    }
+
 
     return (<>
-       <SearchComponent />
-       <div className={'patient-list'}>
-           Patient List
-       </div>
+        <SearchComponent/>
+        <div className={'patient-list-container'}>
+            <PageSlider leastRecentAction={getLeastRecentPatients}
+                        lessRecentAction={getLessRecentPatients}
+                        moreRecentAction={getMoreRecentPatients}
+                        mostRecentAction={getMostRecentPatients}
+                        domain={'patients'} notes={notes}/>
+
+            <div className={'patients-list'}>
+                {patientList.map((p) => <PatientCard key={p.id} patient={p}/>)}
+            </div>
+        </div>
     </>)
 }
 

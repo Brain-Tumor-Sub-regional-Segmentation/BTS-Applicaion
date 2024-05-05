@@ -1,11 +1,13 @@
 import {useState} from 'react'
 
-import {useSearchForPatients} from '../../hooks/useSearchForPatients'
+import {useSearchForPatients} from '../../../hooks/useSearchForPatients'
 
-import {FaSearch } from 'react-icons/fa'
+import {FaSearch, FaTimes} from 'react-icons/fa'
 import './SearchComponent.css'
+import {useNavigate} from "react-router-dom";
 
 const SearchComponent = () => {
+    let navigate = useNavigate()
     let [searchInput, setSearchInput] = useState('')
     let {patients, loading} = useSearchForPatients(searchInput)
 
@@ -20,9 +22,12 @@ const SearchComponent = () => {
                    value={searchInput}
                    onChange={(e) => {setSearchInput(e.target.value)}}
             />
+            <FaTimes className={"x-sign-search-bar"} onClick={() => {setSearchInput('')}}/>
         </div>
         {searchInput && !loading && <div className="search-results">
-            {patients.map(p => <div className="search-result"> {p.name} </div>)}
+            {patients.map(p => <div className="search-result" key={p.id}
+                onClick={() => navigate('/patient/' + p.id)}>
+                {p.name} </div>)}
         </div>}
     </div>;
 }

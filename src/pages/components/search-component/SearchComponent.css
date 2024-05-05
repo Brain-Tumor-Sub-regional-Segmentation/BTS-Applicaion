@@ -43,6 +43,17 @@
     outline: none;
 }
 
+.x-sign-search-bar{
+    color: #09095F;
+    &:hover{
+        color: #003cff;
+        cursor: pointer;
+    }
+    &:active{
+        transform: scale(1.2);
+    }
+}
+
 .search-bar::placeholder {
     font-size: 14px; /* Placeholder font size */
 }
