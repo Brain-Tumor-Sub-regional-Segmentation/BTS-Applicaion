@@ -9,6 +9,7 @@ import {
 import MainLayout from './pages/main-layout/MainLayout'
 import Login from './pages/dummy-pages/Login';
 import Patients from './pages/patient-list/PatientList';
+import Patient from "./pages/patient/Patient";
 
 import './App.css';
 
@@ -19,11 +20,11 @@ const App = () => {
               <Route index element={<div> home page </div>} />
               <Route path={'/patients/'} element={ <Patients/> } />
               <Route path={'/dummy-login'} element={ <Login/> } />
-              <Route path={'/patient/:id'} element={ <div> patient page </div> } />
+              <Route path={'/patient/:id'} element={ <Patient/> } />
               <Route path={'/newPatient'} element={ <div> add Patient </div> } />
               {/*<Route path={'/about'} element={ <About/> } />*/}
 
-              {/*<Route path={'*'} element={ <NotFound/> } />*/}
+              <Route path={'*'} element={ <div> NotFound </div> } />
           </Route>
       )
   );

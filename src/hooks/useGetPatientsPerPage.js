@@ -32,9 +32,10 @@ export const useGetPatientsPerPage = () => {
         let docs = [];
         let lastVisibleDoc, firstVisibleDoc
         snapshot.forEach((doc) => {
-            console.log(doc.data().name)
-            docs.push({...doc.data(), id: doc.id});})
+            docs.push({...doc.data(), id: doc.id});
+        })
         if(docs.length > 0){
+            docs.reverse()
             lastVisibleDoc = snapshot.docs[docs.length - 1]
             firstVisibleDoc = snapshot.docs[0]
         }

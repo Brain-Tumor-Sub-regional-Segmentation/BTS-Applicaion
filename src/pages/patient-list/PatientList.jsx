@@ -32,9 +32,15 @@ const PatientList = () => {
     // Loading patients of recently updated status on loading the page
     useEffect(() => {getMostRecentPatients();}, [loading]);
 
+    // Displaying Alerts for a while: there may be updates
+    useEffect(() => {
+        let timer;
+        timer = setTimeout(() => {setNotes('')} , 9000);
+        return () => clearTimeout(timer);
+    }, [notes]);
+
     let getMostRecentPatients = () => {
         getLatestPatients(null, null, true).then(result => {
-            result.docs.reverse()
             setPatients(result.docs)
             setFirstVisiblePatient(result.firstVisibleDoc)
             setLastVisiblePatient(result.lastVisibleDoc)
@@ -47,7 +53,6 @@ const PatientList = () => {
         getLatestPatients(null, lastVisiblePatient, false).then(result => {
             let docs = result.docs;
             if(docs.length > 0){
-                docs.reverse()
                 setPatients(docs)
                 setFirstVisiblePatient(result.firstVisibleDoc)
                 setLastVisiblePatient(result.lastVisibleDoc)
@@ -61,7 +66,6 @@ const PatientList = () => {
         getLatestPatients(firstVisiblePatient, null, false).then(result => {
             let docs = result.docs
             if(docs.length > 0){
-                docs.reverse()
                 setPatients(docs)
                 setFirstVisiblePatient(result.firstVisibleDoc)
                 setLastVisiblePatient(result.lastVisibleDoc)
@@ -73,19 +77,12 @@ const PatientList = () => {
 
     let getLeastRecentPatients = () => {
         getLatestPatients(null, null, false).then(result => {
-            result.docs.reverse()
             setPatients(result.docs)
             setFirstVisiblePatient(result.firstVisibleDoc)
             setLastVisiblePatient(result.lastVisibleDoc)
             setNotes('')
         })
     }
-
-    useEffect(() => {
-        let timer;
-        timer = setTimeout(() => {setNotes('')} , 9000);
-        return () => clearTimeout(timer);
-    }, [notes]);
 
     return (<>
         <SearchComponent/>
