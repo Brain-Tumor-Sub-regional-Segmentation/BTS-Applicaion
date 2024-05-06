@@ -1,9 +1,11 @@
 import './ProcessCard.css'
 import {useState} from "react";
-import {FaCalendar, FaClock, FaGlobe} from "react-icons/fa";
+import {FaCalendar, FaClock, FaGlobe, FaBrain} from "react-icons/fa";
+import {useNavigate} from "react-router-dom";
 
 const ProcessCard = ({process}) => {
     let [fullReport, showReport] = useState(false);
+    let navigate = useNavigate();
 
     let lastModified = process.date.seconds
     let date = new Date(lastModified * 1000)
@@ -16,15 +18,15 @@ const ProcessCard = ({process}) => {
             <div className={'process-card-name'}>{process.name}</div>
             <div className={'process-card-subtitle'}> Report </div>
             <div className={'process-card-report'}>
-                {!fullReport? (process.notes.slice(0, 350) + " ...") : process.notes}
-                <button onClick={() => {showReport(!fullReport)}} className={'more-less-btn'}>
-                    Show {fullReport? 'less' : 'more'}
-                </button>
+                {(!fullReport && process.notes.length > 350)? (process.notes.slice(0, 350) + " ...") : process.notes}
+                { process.notes.length > 350 && <button onClick={() => {showReport(!fullReport)}} className={'more-less-btn'}>
+                    Show {fullReport ? 'less' : 'more'}
+                </button>}
             </div>
         </div>
         <div className={'process-card-date'}>
             <div className={'patient-card-date-title'}>
-                Last Modified At
+                Created At
             </div>
             <div className={'patient-card-date-body'}>
                 <div className={'patient-card-medicine-history'}>
@@ -38,6 +40,9 @@ const ProcessCard = ({process}) => {
                 <div className={'patient-card-medicine-history'}>
                     <FaGlobe className={'patient-card-icon'}/>
                     <span style={{fontWeight: "bold"}}> Timezone </span>: {localTimeZone}
+                </div>
+                <div className={'process-view-plot'}>
+                    <button onClick={() => navigate(`/process/${process.id}`)}> Review </button>
                 </div>
             </div>
         </div>

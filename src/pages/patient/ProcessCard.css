@@ -21,7 +21,6 @@
 
 .process-card-info{
     width: 70%;
-    border: 1px solid #0a0a46;
     overflow: scroll;
 }
 
@@ -49,7 +48,34 @@
 
 .process-card-date{
     width: 25%;
-    border: 1px solid #0a0a46;
+}
+
+.process-view-plot{
+    width: 65%;
+    height: 3.5rem;
+    display: flex;
+    align-items: center;
+}
+
+.process-view-plot button{
+    width: 100%;
+    height: 2rem;
+    font-weight: bold;
+    font-size: 0.95rem;
+    border: none;
+    border-radius: 8px;
+    background-color: #0a0a46;
+    color: #CBCBCB;
+    box-shadow: 1px 1px 0 1px #0a0a46;
+
+    &:hover{
+        background-color: #12128a;
+        cursor: pointer;
+    }
+
+    &:active{
+        font-size: 1rem;
+    }
 }
 
 .process-card-name{

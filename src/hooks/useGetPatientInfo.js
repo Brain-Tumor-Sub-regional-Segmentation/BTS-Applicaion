@@ -11,7 +11,10 @@ export const useGetPatientInfo = () => {
         try{
             let q = doc(collectionRef, patientId)
             let docSnapShot = await getDoc(q)
-            if (docSnapShot.exists()) return { id: docSnapShot.id, ...docSnapShot.data()}
+            if (docSnapShot.exists()) {
+                console.log(docSnapShot.id)
+                return { id: docSnapShot.id, ...docSnapShot.data()}
+            }
             else {
                 console.log("No such document!");
                 return null;
