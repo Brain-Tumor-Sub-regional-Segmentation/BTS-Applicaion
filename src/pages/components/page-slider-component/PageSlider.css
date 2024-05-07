@@ -1,0 +1,98 @@
+.list-page-slider-add-btn {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.list-slider-btns, .list-slider-notes{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.list-slider-notes {
+    color: red;
+    font-size: 12px;
+    animation: blink 3s linear infinite; /* Adjust duration and timing as needed */
+}
+
+@keyframes blink {
+    0% { opacity: 0; } /* Invisible */
+    50% { opacity: 1; } /* Visible */
+    100% { opacity: 0; } /* Invisible */
+}
+
+.list-slider{
+    width: 85%;
+}
+
+.slider-backward-forward-icon{
+    margin: 0 2px;
+    font-size: 0.95rem;
+}
+
+.slider-backward-forward {
+    padding: 0 5px;
+    color: #0a0a46;
+    font-size: 1.05rem;
+    transition: color 0.3s, transform 0.2s; /* Added transition for transform */
+    border: none;
+    background: none;
+    cursor: pointer; /* Added pointer cursor */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    &:hover {
+        color: #003cff;
+    }
+
+    &:disabled {
+        color: #999;
+        cursor: not-allowed;
+    }
+
+    &:active {
+        transform: scale(1.05);
+    }
+}
+
+.list-add-btn-div {
+    width: 15%;
+    display: flex;
+    justify-content: center; /* Center the button horizontally */
+}
+
+.list-add-btn {
+    max-height: 35px;
+    height: 35px;
+    background-color: #0056b3; /* Blue background color */
+    color: white; /* White text color */
+    font-size: 1rem;
+    padding: 8px 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease; /* Smooth background color transition */
+
+    /* Center the text vertically */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    &:hover{
+        background-color: #0a0a46;
+    }
+
+    &:focus{
+        outline: none;
+    }
+
+    &:active{
+        transform: scale(1.05);
+    }
+}
+
+.list-add-btn-txt {
+    padding: 0 5px;
+}

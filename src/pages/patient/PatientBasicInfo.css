@@ -1,0 +1,77 @@
+
+.patient-page-basic-info{
+    width: 24%;
+    height: 100%;
+    margin-left: 5px;
+    display: flex;
+    flex-direction: column;
+    flex-flow: column;
+    /*border: 1px solid red;*/
+}
+
+.patient-page-age-gender-phone{
+    background: #CBCBCB;
+    color: #0a0a46;
+    padding: 8px 8px;
+    margin: 8px auto;
+    border-radius: 5px;
+    max-width: 80%;
+    min-width: fit-content;
+    min-height: 100%;
+    word-wrap: break-word;
+    overflow: auto;
+    display: flex;
+    flex-direction: column;
+    flex-flow: column;
+}
+
+
+.patient-page-span{
+    margin-right: 3px;
+}
+
+.patient-page-history{
+    display: flex;
+    flex-flow: column;
+    flex-direction: column;
+    height: fit-content;
+    background-color: #CBCBCB;
+    border-radius: 5px;
+    margin-bottom: 5px;
+}
+
+.patient-page-history-title{
+    background-color: #0a0a46;
+    color: #CBCBCB;
+    font-weight: bold;
+    height: 2rem;
+    margin-right: auto;
+    margin-left: auto;
+    width: 100%;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    overflow: auto;
+    word-wrap: break-word;
+}
+
+.patient-page-drop-btn{
+    width: 100%;
+    margin-left: 10px;
+    border: none;
+    background: none;
+    color: #CBCBCB;
+    font-size: 1rem;
+
+    &:hover{
+        cursor: pointer;
+        color: #91a4f1;
+    }
+}
+
+.patient-page-history-body{
+    padding: 8px;
+    word-wrap: break-word;
+}

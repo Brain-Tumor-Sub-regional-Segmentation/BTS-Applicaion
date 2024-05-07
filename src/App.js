@@ -8,7 +8,10 @@ import {
 } from "react-router-dom";
 import LandingPage from "./pages/LandingPage";
 import NewPatient from "./pages/NewPatient"
-import Dummy from "./Dummy";
+import MainLayout from './pages/main-layout/MainLayout'
+import Login from './pages/dummy-pages/Login';
+import Patients from './pages/patient-list/PatientList';
+import Patient from "./pages/patient/Patient";
 
 function App() {
   const action = useNavigationType();
@@ -48,10 +51,14 @@ function App() {
 
   return (
     <Routes>
-      <Route path="/" element={<LandingPage />} />
-      <Route path="/logIn" element={<Dummy/>} />
-      <Route path="/signUp" element={<Dummy/>} />
-      <Route path="/newPatient" element={<NewPatient />} />
+      <Route index element={<LandingPage />} />
+      <Route path='/patients/' element={<Patients/>} />
+      <Route path='/dummy-login' element={<Login/>} />
+      <Route path='/patient/:id' element={<Patient/>} />
+      <Route path='/newPatient' element={<NewPatient />} />
+      <Route path='/newProcess' element={ <div> add Process </div> } />
+      <Route path='/process/:id' element={ <div> Process Page </div> } />
+      <Route path='*' element={ <div> NotFound </div> } />
     </Routes>
   );
 }
