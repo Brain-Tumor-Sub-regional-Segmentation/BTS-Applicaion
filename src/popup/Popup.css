@@ -1,0 +1,166 @@
+/* Popup.css */
+.popup-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+
+.popup {
+  background-color: white;
+  position: relative;
+  padding: 50px;
+  width: 30%;
+  display: block;
+  border-radius: 10px;
+  box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+}
+
+.popup-container {
+  backdrop-filter: blur(5px);
+}
+
+#modal-close-button {
+  position: absolute;
+  top:20px;
+  right: 20px;
+  border: none;
+  background: none;
+  cursor: pointer;
+}
+
+.row {
+  margin-top: 30px;
+  display: flex; /* Use flexbox for row layout */
+  align-items: center; /* Align items vertically */
+  justify-content: space-between;
+}
+.error {
+  color: red;
+  font-size: 12px;
+  margin-top: 5px;
+  
+}
+.col-25 {
+  flex: 0 0 25%; /* Take 25% of the width */
+  margin-top: 6px;
+  display: flex;
+}
+
+.col-75 {
+  flex: 0 0 70%; /* Take 75% of the width */
+  margin-top: 6px;
+  display: flex;
+}
+
+label[for="process-name"] {
+  white-space: nowrap;
+  color: #333C49;
+  font-weight: bold;
+}
+
+#process-name {
+  height: 30px;
+  max-height: 100%;
+  border-radius: 5px;
+  border-color: black;
+  width: calc(100% - 10px);
+}
+
+label[for="disabledLabel"] {
+  flex: 0 0 25%; /* Take 25% of the width */
+  white-space: nowrap;
+  font-size: large;
+  color: #333C49;
+  font-size: large;
+  font-weight: bold;
+}
+
+.disabledTextbox{
+  width: 45%;
+  height: 30px;
+  border-right: none;
+  border-radius: 5px;
+  border-color: black;
+}
+
+input[type="file"] {
+  display: none;
+}
+
+/* Inputs inside the popup */
+.popUpInput {
+  width: 93%;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  padding-left: 20px;
+  border-radius: 5px;
+  font-size: 16px;
+}
+
+.popUpInput::placeholder {
+  font-size: 16px;
+}
+
+.disabledPopUpInput {
+  width: 70%;
+  border-radius: 5px 0 0 5px;
+}
+
+#file{
+  border: 1px solid #ccc;
+  border-radius: 0 5px 5px 0;
+  display:flex;
+  align-items: center;
+  padding: 6px 12px;
+  cursor: pointer;
+  font-size: small;
+  background-color: #333C49;
+  color: white;
+  width: 23%;
+  height: 33px;
+}
+
+.btnDiv{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.submitBtn{
+  background-color: #333C49;
+  color: white;
+  border-radius: 5px;
+  padding: 10px 20px;
+  font-weight: bold;
+  font-size: larger;
+  height: 50px;
+  width: 100%;
+  cursor: pointer;  
+}
+
+@media (max-width: 720px) {
+  .popup {
+    width: 70%;
+  }
+
+  .row {
+    flex-direction: column;
+  }
+
+  label[for="process-name"] {
+    white-space: wrap;
+  }  
+
+  label[for="disabledLabel"] {
+    white-space: wrap;
+  }
+}
