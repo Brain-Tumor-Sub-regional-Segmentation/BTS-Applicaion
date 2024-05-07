@@ -1,0 +1,26 @@
+.patient-page{
+    display: flex;
+    flex-direction: row;
+    flex-flow: row;
+    font-family: Helvetica, sans-serif;
+}
+
+.patient-page-basic-info, .patient-page-main{
+    margin-top: 5px;
+}
+
+.patient-page-main{
+    width: 75%;
+    margin-right: 5px;
+    padding: 5px;
+}
+
+.patient-page-name{
+    font-size: 2rem;
+    font-weight: bold;
+    padding: 10px 10px;
+    display: flex;
+    justify-content: center;
+    color: #0a0a46;
+    
+}

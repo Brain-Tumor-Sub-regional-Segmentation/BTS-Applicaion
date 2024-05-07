@@ -1,0 +1,84 @@
+.patient-card {
+    display: flex;
+    justify-content: space-between;
+    margin: 10px 10px;
+    padding: 5px 5px;
+    min-height: 125px;
+    max-height: 125px;
+    overflow: scroll;
+    word-wrap: break-word;
+
+    width: 87%;
+    border-radius: 8px;
+    background: #CBCBCB;
+    color: #0a0a46;
+    font-family: Helvetica, sans-serif;
+
+    &:hover{
+        background-color: #AAAAAA;
+    }
+}
+
+.patient-card-date{
+    width: 20%;
+    padding: 10px;
+}
+
+.patient-card-date-body{
+    height: 80%;
+    padding-left: 3px;
+    font-size: 0.97rem;
+}
+
+.patient-card-date-subtitle{
+    padding-left: 5px;
+}
+
+.patient-card-date-title, .patient-card-date-subtitle{
+    font-weight: bold;
+}
+
+.patient-card-basic-info {
+    padding: 10px;
+    border-radius: 5px;
+    width: 80%;
+}
+
+.patient-name-gender-age{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.patient-card-gender-age{
+    width: 60%;
+}
+
+.patient-card-name{
+    width: 30%;
+    font-weight: bold;
+    font-size: 1.3rem;
+}
+
+.patient-phone{
+    margin-top: 10px;
+}
+
+.patient-card-medical{
+    word-wrap: break-word;
+    display: flex;
+    flex-direction: column;
+}
+
+.patient-card-medicine-history{
+    width: 100%;
+    margin-top: 5px;
+    flex-wrap: wrap;
+    height: 1.2rem;
+    display: flex;
+}
+
+.patient-card-icon{
+    margin-right: 2px;
+    transform: scaleX(-1);
+}

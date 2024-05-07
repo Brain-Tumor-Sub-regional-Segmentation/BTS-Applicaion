@@ -1,0 +1,85 @@
+.process-card {
+    display: flex;
+    justify-content: space-between;
+    margin: 10px 10px;
+    padding: 5px 5px;
+    min-height: 180px;
+    max-height: 200px;
+    overflow: scroll;
+    word-wrap: break-word;
+
+    width: 97%;
+    border-radius: 8px;
+    background: #CBCBCB;
+    color: #0a0a46;
+    font-family: Helvetica, sans-serif;
+
+    &:hover{
+        background-color: #AAAAAA;
+    }
+}
+
+.process-card-info{
+    width: 70%;
+    overflow: scroll;
+}
+
+.process-card-subtitle{
+    padding: 5px 5px;
+    font-weight: bold;
+    font-size: 1.2rem;
+}
+
+.process-card-report, .process-card-date{
+    padding: 5px 5px;
+}
+
+.more-less-btn{
+    border: none;
+    background: none;
+    text-decoration: underline;
+    color: #09095F;
+
+    &:hover{
+        color: #003cff;
+        cursor: pointer;
+    }
+}
+
+.process-card-date{
+    width: 25%;
+}
+
+.process-view-plot{
+    width: 65%;
+    height: 3.5rem;
+    display: flex;
+    align-items: center;
+}
+
+.process-view-plot button{
+    width: 100%;
+    height: 2rem;
+    font-weight: bold;
+    font-size: 0.95rem;
+    border: none;
+    border-radius: 8px;
+    background-color: #0a0a46;
+    color: #CBCBCB;
+    box-shadow: 1px 1px 0 1px #0a0a46;
+
+    &:hover{
+        background-color: #12128a;
+        cursor: pointer;
+    }
+
+    &:active{
+        font-size: 1rem;
+    }
+}
+
+.process-card-name{
+    padding: 5px 5px;
+    font-weight: bold;
+    font-size: 1.8rem;
+}
