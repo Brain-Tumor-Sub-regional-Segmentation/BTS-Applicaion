@@ -1,0 +1,40 @@
+.newPatientChild {
+  align-self: stretch;
+  height: 1px;
+  position: relative;
+  border-top: 1px solid rgba(0, 40, 68, 0.21);
+  box-sizing: border-box;
+}
+
+.newPatient,
+.newPatientInner {
+  display: flex;
+  align-items: flex-start;
+  box-sizing: border-box;
+}
+.newPatientInner {
+  width: 1307.6px;
+  flex-direction: row;
+  justify-content: center;
+  padding: 0 var(--padding-xl) 0 100px;
+  max-width: 100%;
+}
+.newPatient {
+  width: 100%;
+  position: relative;
+  background-color: var(--color-white);
+  overflow: hidden;
+  flex-direction: column;
+  justify-content: flex-start;
+  padding: 13px 0 30px;
+  gap: 14px;
+  line-height: normal;
+  letter-spacing: normal;
+}
+@media screen and (max-width: 450px) {
+  .frameParent {
+    gap: var(--gap-xl);
+  }
+}
+
+
