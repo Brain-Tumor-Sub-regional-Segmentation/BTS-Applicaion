@@ -1,12 +1,9 @@
 // SignUp.jsx
 import React, {useState, useEffect } from 'react';
 import'./SignUp.css'
-import db from '../../config/firebase-config';
-import bcrypt from 'bcryptjs';
+import { auth } from '../../config/firebase-config';
 import { useNavigate } from 'react-router-dom';
-import firebase from 'firebase/compat/app';
-import 'firebase/compat/auth';
-
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from 'firebase/auth';
 
 const SignUp = () => {
     const [username, setUsername] = useState('');
@@ -56,7 +53,7 @@ const SignUp = () => {
         return () => {
             registerLink.removeEventListener('click', handleRegisterClick);
             loginLink.removeEventListener('click', handleLoginClick);
-           
+            
         };
     }, []);
 
@@ -126,48 +123,62 @@ const SignUp = () => {
         // Regular expression for email validation
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         return emailRegex.test(email);
-      };
-      
-      // Function to handle email input change
-      const handleEmailChange = (e) => {
+    };
+    
+    // Function to handle email input change
+    const handleEmailChange = (e) => {
         const newEmail = e.target.value;
         setEmail(newEmail);
         // Validate the new email format
         if (!validateEmail(newEmail)) {
-          setEmailError('Please enter a valid email address.');
+            setEmailError('Please enter a valid email address.');
         } else {
-          setEmailError('');
+            setEmailError('');
         }
-      };
+    };
 
-      const handleSubmitLogin = async (e) => {
+    const handleSubmitLogin = async (e) => {
         e.preventDefault(); // Prevent form submission
-    
-        try {
-            // Sign in the user with email and password using Firebase Auth
-            const userCredential = await firebase.auth().signInWithEmailAndPassword(email, password);
-    
-            // If successful, userCredential.user will contain the user information
+
+        signInWithEmailAndPassword(auth, email, password)
+        .then((userCredential) => {
+            // Signed in
             const user = userCredential.user;
+            console.log(user)
+            navigate("/home/patients")
+        })
+        .catch((error) => {
+            const errorCode = error.code;
+            const errorMessage = error.message;
+            console.log(errorCode, errorMessage)
+        });
+        
+        // try {
+        //     // Sign in the user with email and password using Firebase Auth
+        //     const userCredential = await auth.signInWithEmailAndPassword(email, password);
+
+        //     // If successful, userCredential.user will contain the user information
+        //     const user = userCredential.user;
+        //     console.log(user)
     
-            // Navigate to the home page or perform any other action
-           // localStorage.setItem('id', user.uid);
-            navigate('/home');
+        //     // Navigate to the home page or perform any other action
+        //    // localStorage.setItem('id', user.uid);
+        //     navigate('/home');
             
-            return { success: true, message: 'Login successful' };
-        } catch (error) {
-            // Handle Firebase authentication error
-            console.error('Error logging in:', error.code);
-            // You can handle different error codes and display appropriate messages
-            if (error.code === 'auth/invalid-credential') {
-                console.log('Invalid email or password');
-                setWrongCredentialsError('Invalid email or password')
-                return { success: false, message: 'Invalid email or password' };
-            } else {
-                console.log('An error occurred while logging in');
-                return { success: false, message: 'An error occurred while logging in' };
-            }
-        }
+        //     return { success: true, message: 'Login successful' };
+        // } catch (error) {
+        //     // Handle Firebase authentication error
+        //     console.error('Error logging in:', error.code);
+        //     // You can handle different error codes and display appropriate messages
+        //     if (error.code === 'auth/invalid-credential') {
+        //         console.log('Invalid email or password');
+        //         setWrongCredentialsError('Invalid email or password')
+        //         return { success: false, message: 'Invalid email or password' };
+        //     } else {
+        //         console.log('An error occurred while logging in');
+        //         return { success: false, message: 'An error occurred while logging in' };
+        //     }
+        // }
     };
     
     const handleSubmitSignUp = async (e) => {
@@ -179,42 +190,60 @@ const SignUp = () => {
     
         // If there are no errors, you can proceed with form submission
         if (!passwordError && !phoneNumberError) {
-            try {
-                // Create a new user with email and password
-                const userCredential = await firebase.auth().createUserWithEmailAndPassword(email, password);
-    
-                // If successful, userCredential.user will contain the user information
+            await createUserWithEmailAndPassword(auth, email, password)
+            .then((userCredential) => {
+                // Signed in
                 const user = userCredential.user;
-    
-                // Proceed with storing additional user data in Firestore
-                const docRef = await db.collection('doctors').add({
-                    name: username,
-                    email: email,
-                    phone: phoneNumber,
-                    doctorId: doctorId,
-                    // Do not store password in Firestore
-                });
-    
-                // Get the ID of the newly created document
-                //const newDocId = docRef.id;
-                //console.log('New doctor added with ID:', newDocId);
-                
-              
-                // Reset input fields
-                resetInputFields();
-               // localStorage.setItem('id', newDocId);
-                navigate('/home');
-    
-                // Handle navigation or display success message
-            } catch (error) {
-                // Handle Firebase authentication error
-                console.error('Error creating user:', error.message);
-                // You can handle different error codes and display appropriate messages
+                console.log(user);
+                resetInputFields()
+                navigate("/home/patients")
+            })
+            .catch((error) => {
+                const errorCode = error.code;
+                const errorMessage = error.message;
+                console.log(errorCode, errorMessage);
+                // // You can handle different error codes and display appropriate messages
                 if (error.code === 'auth/email-already-in-use') {
                     console.log('Email is already in use');
                     setEmailInUseError('Email is already in use');
                 }
-            }
+            });
+            // try {
+            //     // Create a new user with email and password
+            //     const userCredential = await firebase.auth().createUserWithEmailAndPassword(email, password);
+    
+            //     // If successful, userCredential.user will contain the user information
+            //     const user = userCredential.user;
+    
+            //     // Proceed with storing additional user data in Firestore
+            //     // const docRef = await database.collection('doctors').add({
+            //     //     name: username,
+            //     //     email: email,
+            //     //     phone: phoneNumber,
+            //     //     doctorId: doctorId,
+            //     //     // Do not store password in Firestore
+            //     // });
+    
+            //     // Get the ID of the newly created document
+            //     //const newDocId = docRef.id;
+            //     //console.log('New doctor added with ID:', newDocId);
+                
+              
+            //     // Reset input fields
+            //     resetInputFields();
+            //    // localStorage.setItem('id', newDocId);
+            //     navigate('/home');
+    
+            //     // Handle navigation or display success message
+            // } catch (error) {
+            //     // Handle Firebase authentication error
+            //     console.error('Error creating user:', error.message);
+            //     // You can handle different error codes and display appropriate messages
+            //     if (error.code === 'auth/email-already-in-use') {
+            //         console.log('Email is already in use');
+            //         setEmailInUseError('Email is already in use');
+            //     }
+            // }
         } else {
             console.log('Form has errors, cannot submit.');
         }

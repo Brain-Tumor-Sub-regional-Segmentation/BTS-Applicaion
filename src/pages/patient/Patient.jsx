@@ -9,7 +9,7 @@ import {useGetProcessesPerPage} from '../../hooks/useGetProcessesPerPage'
 
 import './Patient.css'
 import PatientBasicInfo from "./PatientBasicInfo";
-import PageSlider from "../components/page-slider-component/PageSlider";
+import PageSlider from "../../components/PageSlider";
 import ProcessCard from "./ProcessCard";
 import PatientCard from "../patient-list/PatientCard";
 

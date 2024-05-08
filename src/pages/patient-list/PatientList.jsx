@@ -4,8 +4,8 @@ import {useNavigate} from 'react-router-dom'
 import {auth} from "../../config/firebase-config"
 import {onAuthStateChanged} from "firebase/auth";
 
-import PageSlider from "../components/page-slider-component/PageSlider"
-import SearchComponent from "../components/search-component/SearchComponent"
+import PageSlider from "../../components/PageSlider"
+import SearchComponent from "../../components/SearchComponent"
 import { useGetPatientsPerPage } from '../../hooks/useGetPatientsPerPage'
 
 import './PatientList.css'

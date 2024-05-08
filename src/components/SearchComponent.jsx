@@ -1,6 +1,6 @@
 import {useState} from 'react'
 
-import {useSearchForPatients} from '../../../hooks/useSearchForPatients'
+import {useSearchForPatients} from '../hooks/useSearchForPatients'
 
 import {FaSearch, FaTimes} from 'react-icons/fa'
 import './SearchComponent.css'

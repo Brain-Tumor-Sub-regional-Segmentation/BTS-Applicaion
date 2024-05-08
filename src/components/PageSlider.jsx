@@ -34,8 +34,8 @@ const PageSlider = ({domain, mostRecentAction, moreRecentAction, lessRecentActio
         <div className={'list-add-btn-div'}>
         <button className={'list-add-btn'}
                     onClick={() => {
-                        if (domain === 'patients') navigate('/newPatient')
-                        if (domain === 'patient') navigate('/newProcess')
+                        if (domain === 'patients') navigate('/home/newPatient')
+                        if (domain === 'patient') navigate('/home/newProcess')
                     }}>
             <FaPlus/>
             {domain === 'patients' && (<span className={'list-add-btn-txt'}> Add Patient </span>)}

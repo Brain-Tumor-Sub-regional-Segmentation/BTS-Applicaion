@@ -25,7 +25,7 @@ const LandingPage = () => {
               <img className={styles.frameChild} alt="" src="/rectangle-82.svg" />
               <div className={styles.signUp}>Sign up</div>
             </button>
-            <button className={styles.rectangleParent} onClick={() => navigate("/logIn")}>
+            <button className={styles.rectangleParent} onClick={() => navigate("/signUp")}>
               <div className={styles.frameItem} />
               <div className={styles.signIn}>Sign in</div>
             </button>
