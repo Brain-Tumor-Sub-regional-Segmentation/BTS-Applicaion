@@ -5,7 +5,7 @@ import styles from "./MainLayout.module.css"
 const MainLayout = () => {
     return (
         <>
-            <NavBar firstLetter="A"/>
+            <NavBar/>
             <div className={styles.Line} />
             <Outlet/>
         </>

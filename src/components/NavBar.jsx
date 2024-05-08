@@ -2,7 +2,7 @@ import { useNavigate } from "react-router-dom";
 import styles from "./NavBar.module.css";
 import SettingsMenu from "./SettingsMenu";
 
-const NavBar = ({firstLetter}) => {
+const NavBar = () => {
   const navigate = useNavigate();
   return (
     <section className={styles.patient}>
@@ -44,7 +44,7 @@ const NavBar = ({firstLetter}) => {
                 <div className={styles.frameItem} />
               </div>
             </div>
-            <SettingsMenu firstLetter={firstLetter}/>
+            <SettingsMenu/>
           </div>
         </div>
       </div>

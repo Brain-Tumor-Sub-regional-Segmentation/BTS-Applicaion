@@ -1,9 +1,10 @@
 // SignUp.jsx
 import React, {useState, useEffect } from 'react';
 import'./SignUp.css'
-import { auth } from '../../config/firebase-config';
+import { auth, database } from '../../config/firebase-config';
 import { useNavigate } from 'react-router-dom';
-import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from 'firebase/auth';
+import { createUserWithEmailAndPassword, signInWithEmailAndPassword, onAuthStateChanged } from 'firebase/auth';
+import { doc, setDoc } from 'firebase/firestore';
 
 const SignUp = () => {
     const [username, setUsername] = useState('');
@@ -152,21 +153,6 @@ const SignUp = () => {
             const errorMessage = error.message;
             console.log(errorCode, errorMessage)
         });
-    
-        //     return { success: true, message: 'Login successful' };
-        // } catch (error) {
-        //     // Handle Firebase authentication error
-        //     console.error('Error logging in:', error.code);
-        //     // You can handle different error codes and display appropriate messages
-        //     if (error.code === 'auth/invalid-credential') {
-        //         console.log('Invalid email or password');
-        //         setWrongCredentialsError('Invalid email or password')
-        //         return { success: false, message: 'Invalid email or password' };
-        //     } else {
-        //         console.log('An error occurred while logging in');
-        //         return { success: false, message: 'An error occurred while logging in' };
-        //     }
-        // }
     };
     
     const handleSubmitSignUp = async (e) => {
@@ -177,12 +163,16 @@ const SignUp = () => {
         validatePhoneNumber(phoneNumber);
     
         // If there are no errors, you can proceed with form submission
-        if (!passwordError && !phoneNumberError) {
+        // if (!passwordError && !phoneNumberError) {
             await createUserWithEmailAndPassword(auth, email, password)
-            .then((userCredential) => {
+            .then(async (userCredential) => {
                 // Signed in
                 const user = userCredential.user;
                 console.log(user);
+                const docRef = doc(database, 'doctors', user.uid)
+                await setDoc(docRef, {email:user.email, username, phoneNumber})
+                .then(() => console.log("User is added successfully"))
+                .catch((e) => console.log("Error adding username and phone number:", e));
                 resetInputFields()
                 navigate("/home/patients")
             })
@@ -195,9 +185,10 @@ const SignUp = () => {
                     setEmailInUseError('Email is already in use');
                 }
             });
-        } else {
-            console.log('Form has errors, cannot submit.');
-        }
+
+        // } else {
+        //     console.log('Form has errors, cannot submit.');
+        // }
     };
     
     const handleSwitchToLogin = () => {

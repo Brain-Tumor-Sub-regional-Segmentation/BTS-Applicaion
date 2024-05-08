@@ -17,9 +17,6 @@ import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import styles from "./NewPatientForm.module.css";
 import dayjs from 'dayjs';
 import { useState } from "react";
-import { collection, addDoc } from "firebase/firestore";
-import { database } from "../../config/firebase-config";
-import { useGetDoctorID } from "../../hooks/useGetDoctorID";
 import { usePostPatient } from "../../hooks/usePostPatient";
 
 const NewPatientForm = () => {

@@ -7,16 +7,22 @@ import MenuItem from '@mui/material/MenuItem';
 import MenuList from '@mui/material/MenuList';
 import Stack from '@mui/material/Stack';
 import styles from "./NavBar.module.css"
-
-import { auth } from "../config/firebase-config"
+import { auth } from '../config/firebase-config';
 import { signOut } from "firebase/auth";
 import { useNavigate } from 'react-router-dom';
+import { useEffect, useState, useRef } from 'react';
+import { useGetFirstLetter } from '../hooks/useGetFirstLetter';
 
-export default function SettingsMenu({firstLetter}) {
-  const [open, setOpen] = React.useState(false);
-  const anchorRef = React.useRef(null);
-
+export default function SettingsMenu() {
+  const [open, setOpen] = useState(false);
+  const anchorRef = useRef(null);
   const navigate = useNavigate();
+  const {getFirstLetter} = useGetFirstLetter();
+  const [firstLetter, setFirstLetter] = useState('A');
+
+  useEffect(() => {
+    getFirstLetter().then((f) => setFirstLetter(f));
+  }, []);
 
   const handleLogout = (e) => {               
     signOut(auth).then(() => {
