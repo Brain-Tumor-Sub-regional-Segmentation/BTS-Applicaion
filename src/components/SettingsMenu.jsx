@@ -12,6 +12,7 @@ import { signOut } from "firebase/auth";
 import { useNavigate } from 'react-router-dom';
 import { useEffect, useState, useRef } from 'react';
 import { useGetFirstLetter } from '../hooks/useGetFirstLetter';
+import { useGetDoctorID } from '../hooks/useGetDoctorID';
 
 export default function SettingsMenu() {
   const [open, setOpen] = useState(false);
@@ -19,10 +20,12 @@ export default function SettingsMenu() {
   const navigate = useNavigate();
   const {getFirstLetter} = useGetFirstLetter();
   const [firstLetter, setFirstLetter] = useState('A');
+  const {doctorID} = useGetDoctorID()
+  
 
   useEffect(() => {
     getFirstLetter().then((f) => setFirstLetter(f));
-  }, []);
+  }, [firstLetter]);
 
   const handleLogout = (e) => {               
     signOut(auth).then(() => {
