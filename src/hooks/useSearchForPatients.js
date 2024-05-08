@@ -1,4 +1,4 @@
-import {useEffect, useState} from "react";
+import {useCallback, useEffect, useState} from "react";
 import { collection, query, where, onSnapshot, or, and} from "firebase/firestore";
 import { database } from "../config/firebase-config";
 import { useGetDoctorID } from "./useGetDoctorID";
@@ -6,7 +6,7 @@ import { useGetDoctorID } from "./useGetDoctorID";
 export const useSearchForPatients = (keyword) => {
     const [patients, setPatients] = useState([]);
     let [loading, setLoading] = useState(true);
-    const { doctorId } = useGetDoctorID();
+    const { doctorID } = useGetDoctorID();
     const collectionRef = collection(database, '/patient-trigrams')
 
     const generateTrigrams = (key) => {
@@ -27,7 +27,7 @@ export const useSearchForPatients = (keyword) => {
         let unsubscribe;
         try {
             const queryUsers = query(collectionRef,
-                and(or(...constraints), where('doctorID', '==', doctorId)));
+                and(or(...constraints), where('doctorID', '==', doctorID)));
 
             unsubscribe = onSnapshot(queryUsers, (snapshot) => {
                 const docs = [];
@@ -49,9 +49,10 @@ export const useSearchForPatients = (keyword) => {
     }
 
     useEffect(() => {
-        getUsers().then(() => {console.log("fetched successfully");})
-                  .catch((e) => {console.log(e);});
-    }, [keyword, doctorId, loading]);
+        getUsers()
+        .then(() => {console.log("fetched successfully");})
+        .catch((e) => {console.log(e);});
+    }, [keyword, doctorID, loading]);
 
 
     return { patients, loading};

@@ -3,27 +3,27 @@ import {database} from "../config/firebase-config";
 import {useParams} from "react-router-dom";
 
 export const useGetProcessesPerPage = () => {
-    let patientId = useParams().id;
+    let patientID = useParams().id;
     const collectionRef = collection(database, "processes");
 
     let getLatestProcesses = async (firstDoc, lastDoc, isLatest) => {
         let q;
         if(isLatest)
-            q = query(collectionRef, where("patientID", '==', patientId),
+            q = query(collectionRef, where("patientID", '==', patientID),
                 orderBy("date"),
                 limitToLast(3));
         else if(firstDoc)
-            q = query(collectionRef, where("patientID", '==', patientId),
+            q = query(collectionRef, where("patientID", '==', patientID),
                 orderBy('date'),
                 endBefore(firstDoc),
                 limitToLast(3));
         else if(lastDoc)
-            q = query(collectionRef, where("patientID", '==', patientId),
+            q = query(collectionRef, where("patientID", '==', patientID),
                 orderBy('date'),
                 startAfter(lastDoc),
                 limit(3))
         else if(!isLatest)
-            q = query(collectionRef, where("patientID", '==', patientId),
+            q = query(collectionRef, where("patientID", '==', patientID),
                 orderBy("date"),
                 limit(3));
 

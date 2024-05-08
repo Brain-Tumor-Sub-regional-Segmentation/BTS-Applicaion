@@ -3,14 +3,14 @@ import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "../config/firebase-config";
 
 export const useGetDoctorID = () => {
-    let [doctorId, setDoctorId] = useState(null);
+    let [doctorID, setDoctorId] = useState(null);
 
     useEffect(() => {
         console.log("useGetDoctorID called");
         onAuthStateChanged(auth, (usr) => {
             if (usr) setDoctorId(usr.uid)
         })
-    }, [doctorId]);
+    }, [doctorID]);
 
-    return { doctorId }; // Change doctorId to doctorID
+    return { doctorID }; // Change doctorId to doctorID
 };

@@ -4,7 +4,6 @@ import {
   Route,
   useNavigationType,
   useLocation,
-  Navigate,
 } from "react-router-dom";
 import LandingPage from "./pages/landing-page/LandingPage";
 import NewPatient from "./pages/new-patient/NewPatient"

@@ -22,7 +22,7 @@ const PatientCard = ({patient}) => {
     let localTime = date.toLocaleTimeString();
     const localTimeZone = Intl.DateTimeFormat().resolvedOptions().timeZone;
 
-    return <div className="patient-card" onClick={() => navigate("/patient/"+patient.id)}>
+    return <div className="patient-card" onClick={() => navigate("/home/patient/"+patient.id)}>
         <div className="patient-card-basic-info">
             <div className={'patient-name-gender-age'}>
                 <div className={'patient-card-name'}> {name} </div>

@@ -152,19 +152,7 @@ const SignUp = () => {
             const errorMessage = error.message;
             console.log(errorCode, errorMessage)
         });
-        
-        // try {
-        //     // Sign in the user with email and password using Firebase Auth
-        //     const userCredential = await auth.signInWithEmailAndPassword(email, password);
-
-        //     // If successful, userCredential.user will contain the user information
-        //     const user = userCredential.user;
-        //     console.log(user)
     
-        //     // Navigate to the home page or perform any other action
-        //    // localStorage.setItem('id', user.uid);
-        //     navigate('/home');
-            
         //     return { success: true, message: 'Login successful' };
         // } catch (error) {
         //     // Handle Firebase authentication error
@@ -204,46 +192,9 @@ const SignUp = () => {
                 console.log(errorCode, errorMessage);
                 // // You can handle different error codes and display appropriate messages
                 if (error.code === 'auth/email-already-in-use') {
-                    console.log('Email is already in use');
                     setEmailInUseError('Email is already in use');
                 }
             });
-            // try {
-            //     // Create a new user with email and password
-            //     const userCredential = await firebase.auth().createUserWithEmailAndPassword(email, password);
-    
-            //     // If successful, userCredential.user will contain the user information
-            //     const user = userCredential.user;
-    
-            //     // Proceed with storing additional user data in Firestore
-            //     // const docRef = await database.collection('doctors').add({
-            //     //     name: username,
-            //     //     email: email,
-            //     //     phone: phoneNumber,
-            //     //     doctorId: doctorId,
-            //     //     // Do not store password in Firestore
-            //     // });
-    
-            //     // Get the ID of the newly created document
-            //     //const newDocId = docRef.id;
-            //     //console.log('New doctor added with ID:', newDocId);
-                
-              
-            //     // Reset input fields
-            //     resetInputFields();
-            //    // localStorage.setItem('id', newDocId);
-            //     navigate('/home');
-    
-            //     // Handle navigation or display success message
-            // } catch (error) {
-            //     // Handle Firebase authentication error
-            //     console.error('Error creating user:', error.message);
-            //     // You can handle different error codes and display appropriate messages
-            //     if (error.code === 'auth/email-already-in-use') {
-            //         console.log('Email is already in use');
-            //         setEmailInUseError('Email is already in use');
-            //     }
-            // }
         } else {
             console.log('Form has errors, cannot submit.');
         }
@@ -263,7 +214,7 @@ const SignUp = () => {
     
   
     return (
-        <>
+        <div className="sign-up">
             <div className="wrapper">
                 <span className="rotate-bg"></span>
                 <span className="rotate-bg2"></span>
@@ -366,7 +317,7 @@ const SignUp = () => {
                 </div>
 
             </div>
-        </>
+        </div>
     );
 };
 

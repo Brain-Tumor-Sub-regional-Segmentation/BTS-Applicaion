@@ -10,19 +10,27 @@ import {
   Radio,
   Button,
 } from "@mui/material";
+import { AdapterDayjs } from '@mui/x-date-pickers/AdapterDayjs';
+import { DemoContainer, DemoItem } from '@mui/x-date-pickers/internals/demo';
+import { LocalizationProvider } from '@mui/x-date-pickers/LocalizationProvider';
+import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import styles from "./NewPatientForm.module.css";
-import { useRef, useState } from "react";
+import dayjs from 'dayjs';
+import { useState } from "react";
+import { collection, addDoc } from "firebase/firestore";
+import { database } from "../../config/firebase-config";
+import { useGetDoctorID } from "../../hooks/useGetDoctorID";
+import { usePostPatient } from "../../hooks/usePostPatient";
 
 const NewPatientForm = () => {
-  // const [gender, setGender] = useState('female')
-  const [age, setAge] = useState('')
+  const [birthday, setBirthday] = useState(dayjs());
+  const [gender, setGender] = useState('female');
+  const {addNewPatient} = usePostPatient();
 
   const initialPatient = 
   {
     name: '',
-    age:'',
-    gender: 'female',
-    mobileNo: '',
+    phone: '',
     medications: '',
     allergies: '',
     medicalHistory: ''
@@ -36,10 +44,11 @@ const NewPatientForm = () => {
     setPatient({...patient, [name]: value})
   }
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault()
-    console.log(patient)
-    // adding the new patient to the db
+    // console.log({...patient, gender, birthday, doctorID, lastModified: dayjs()})
+    const boolGender = (gender === 'female' ? false : true)
+    addNewPatient({...patient, birthday: birthday.toDate(), gender: boolGender});
   }
 
   return (
@@ -66,24 +75,13 @@ const NewPatientForm = () => {
         <div className={styles.options}>
           <div className={styles.opMenuitemlabel}>
             <div className={styles.dropdownMenuParent}>
-            <FormControl required sx={{ m: 1, minWidth: 150 }}>
-              <InputLabel id="age" className={styles.age}>Age</InputLabel>
-              <Select
-                labelId="age"
-                id="age"
-                label="Age *"
-                className={styles.age}
-                name="age"
-                value={patient.age}
-                onChange={(e) => handleChange(e)}
-              >
-                <MenuItem value={0} className={styles.age}>1-16</MenuItem>
-                <MenuItem value={1} className={styles.age}>17-29</MenuItem>
-                <MenuItem value={2} className={styles.age}>30-44</MenuItem>
-                <MenuItem value={3} className={styles.age}>45 or above</MenuItem>
-              </Select>
-              <FormHelperText>Required</FormHelperText>
-            </FormControl>
+              <LocalizationProvider dateAdapter={AdapterDayjs}>
+                <DemoContainer components={['DatePicker']}>
+                  <DemoItem label="Date of birth">
+                    <DatePicker maxDate={dayjs()} value={birthday} onChange={setBirthday}/>
+                  </DemoItem>
+                </DemoContainer>
+              </LocalizationProvider>
               <div className={styles.frameWrapper}>
                 <div className={styles.mobileNoParent}>
                   <FormControl>
@@ -91,8 +89,8 @@ const NewPatientForm = () => {
                     <RadioGroup
                       aria-labelledby="gender"
                       name="gender"
-                      value={patient.gender}
-                      onChange={(e) => handleChange(e)}
+                      value={gender}
+                      onChange={(e) => setGender(e.target.value)}
                     >
                       <FormControlLabel value="female" control={<Radio />} label="Female" />
                       <FormControlLabel value="male" control={<Radio />} label="Male" />
@@ -109,8 +107,8 @@ const NewPatientForm = () => {
                       className={styles.input}
                       placeholder="+20 1097445453"
                       type="text"
-                      name="mobileNo"
-                      value={patient.mobileNo}
+                      name="phone"
+                      value={patient.phone}
                       onChange={(e) => handleChange(e)}
                     />
                   </div>

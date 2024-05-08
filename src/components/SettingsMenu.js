@@ -8,9 +8,25 @@ import MenuList from '@mui/material/MenuList';
 import Stack from '@mui/material/Stack';
 import styles from "./NavBar.module.css"
 
+import { auth } from "../config/firebase-config"
+import { signOut } from "firebase/auth";
+import { useNavigate } from 'react-router-dom';
+
 export default function SettingsMenu({firstLetter}) {
   const [open, setOpen] = React.useState(false);
   const anchorRef = React.useRef(null);
+
+  const navigate = useNavigate();
+
+  const handleLogout = (e) => {               
+    signOut(auth).then(() => {
+      handleClose(e)
+      navigate("/");
+      console.log("Signed out successfully")
+    }).catch((error) => {
+      console.log(error.code, error.message)
+    });
+  }
 
   const handleToggle = () => {
     setOpen((prevOpen) => !prevOpen);
@@ -83,7 +99,7 @@ export default function SettingsMenu({firstLetter}) {
                     >
                         <MenuItem style={{fontFamily:'var(--font-karla)'}} onClick={handleClose}>Profile</MenuItem>
                         <MenuItem style={{fontFamily:'var(--font-karla)'}} onClick={handleClose}>My account</MenuItem>
-                        <MenuItem style={{fontFamily:'var(--font-karla)'}} onClick={handleClose}>Logout</MenuItem>
+                        <MenuItem style={{fontFamily:'var(--font-karla)'}} onClick={handleLogout}>Logout</MenuItem>
                     </MenuList>
                     </ClickAwayListener>
                 </Paper>

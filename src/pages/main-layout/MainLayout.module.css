@@ -1,0 +1,7 @@
+.Line {
+  align-self: stretch;
+  height: 1px;
+  position: relative;
+  border-top: 1px solid rgba(0, 40, 68, 0.21);
+  box-sizing: border-box;
+}

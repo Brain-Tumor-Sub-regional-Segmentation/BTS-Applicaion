@@ -1,10 +1,12 @@
 import {Outlet} from "react-router-dom";
-// import NavBar from "../../components/NavBar";
+import NavBar from "../../components/NavBar";
+import styles from "./MainLayout.module.css"
 
 const MainLayout = () => {
     return (
         <>
-            {/*<NavBar firstLetter="A"/>*/}
+            <NavBar firstLetter="A"/>
+            <div className={styles.Line} />
             <Outlet/>
         </>
     )

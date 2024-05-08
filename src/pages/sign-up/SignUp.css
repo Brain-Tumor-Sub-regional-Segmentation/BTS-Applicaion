@@ -6,14 +6,14 @@
     --lightBulue: #17a;
 }
 
-*{
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
     font-family: 'Poppins', sans-serif;
 }
 
-body{
+.sign-up {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -145,9 +145,9 @@ form button{
 }
 
 /*change color from rgba(0, 0, 0, 0.8)*/
-form button:hover{
+/* form button:hover{
     box-shadow: 0 0 10px rgba(0, 40, 68, 100);
-}
+} */
 /*change color from  color: var(--black)*/
 form .linkTxt{
     font-size: 14px;

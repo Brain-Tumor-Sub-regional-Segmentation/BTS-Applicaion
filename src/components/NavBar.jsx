@@ -1,7 +1,9 @@
+import { useNavigate } from "react-router-dom";
 import styles from "./NavBar.module.css";
 import SettingsMenu from "./SettingsMenu";
 
 const NavBar = ({firstLetter}) => {
+  const navigate = useNavigate();
   return (
     <section className={styles.patient}>
       <div className={styles.frameParent}>
@@ -30,13 +32,13 @@ const NavBar = ({firstLetter}) => {
         </div>
         <div className={styles.frameWrapper}>
           <div className={styles.frameGroup}>
-            <div className={styles.homeParent} onClick={() => console.log("click")}>
+            <div className={styles.homeParent} onClick={() => navigate("/home/patients")}>
               <div className={styles.home}>Home</div>
               <div className={styles.lineWrapper}>
                 <div className={styles.frameChild} />
               </div>
             </div>
-            <div className={styles.processParent} onClick={() => console.log("click")}>
+            <div className={styles.processParent} onClick={() => navigate("/home/newProcess")}>
               <div className={styles.process}>Process</div>
               <div className={styles.lineContainer}>
                 <div className={styles.frameItem} />
