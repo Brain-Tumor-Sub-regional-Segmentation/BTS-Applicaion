@@ -20,7 +20,7 @@ const FrameComponent = () => {
           <div className={styles.amWrapper}>
             <div className={styles.am}>7:30 AM</div>
           </div>
-          <input type="file"  id="zoomIn" multiple />
+          
         </div>
       </div>
     </div>

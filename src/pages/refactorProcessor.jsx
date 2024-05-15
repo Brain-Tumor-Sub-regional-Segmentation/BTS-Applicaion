@@ -451,6 +451,7 @@ const ProcessRefactor = () => {
         <div className={styles.processDate}>
           <FrameComponent />
           <div className={styles.fRAMEAParent}>
+          <input type="file" onChange={handleFileSelect} id="zoomIn" multiple />
 
             <div className={styles.fRAMEA}>
               <div className={styles.fRAMEB}>
@@ -595,7 +596,6 @@ const ProcessRefactor = () => {
                         height="100"
                         style={{ transform: "rotate(270deg)", display: "none" }}
                       ></canvas>
-                      
                     </div>
                   </div>
                 </div>
@@ -604,7 +604,6 @@ const ProcessRefactor = () => {
           </div>
         </div>
       </section>
-
     </div>
   );
 };
