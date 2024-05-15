@@ -27,7 +27,7 @@
   backdrop-filter: blur(5px);
 }
 
-#modal-close-button {
+#popup-modal-close-button {
   position: absolute;
   top:20px;
   right: 20px;
@@ -36,25 +36,25 @@
   cursor: pointer;
 }
 
-.row {
+.popup-row {
   margin-top: 30px;
   display: flex; /* Use flexbox for row layout */
   align-items: center; /* Align items vertically */
   justify-content: space-between;
 }
-.error {
+.popup-error {
   color: red;
   font-size: 12px;
   margin-top: 5px;
   
 }
-.col-25 {
+.popup-col-25 {
   flex: 0 0 25%; /* Take 25% of the width */
   margin-top: 6px;
   display: flex;
 }
 
-.col-75 {
+.popup-col-75 {
   flex: 0 0 70%; /* Take 75% of the width */
   margin-top: 6px;
   display: flex;
@@ -66,7 +66,7 @@ label[for="process-name"] {
   font-weight: bold;
 }
 
-#process-name {
+#popup-process-name {
   height: 30px;
   max-height: 100%;
   border-radius: 5px;
@@ -83,7 +83,7 @@ label[for="disabledLabel"] {
   font-weight: bold;
 }
 
-.disabledTextbox{
+.popup-disabledTextbox{
   width: 45%;
   height: 30px;
   border-right: none;
@@ -96,7 +96,7 @@ input[type="file"] {
 }
 
 /* Inputs inside the popup */
-.popUpInput {
+.popup-popUpInput {
   width: 93%;
   height: 40px;
   display: flex;
@@ -106,16 +106,16 @@ input[type="file"] {
   font-size: 16px;
 }
 
-.popUpInput::placeholder {
+.popup-popUpInput::placeholder {
   font-size: 16px;
 }
 
-.disabledPopUpInput {
+.popup-disabledPopUpInput {
   width: 70%;
   border-radius: 5px 0 0 5px;
 }
 
-#file{
+#popup-file{
   border: 1px solid #ccc;
   border-radius: 0 5px 5px 0;
   display:flex;
@@ -129,13 +129,13 @@ input[type="file"] {
   height: 33px;
 }
 
-.btnDiv{
+.popup-btnDiv{
   width: 100%;
   display: flex;
   justify-content: center;
 }
 
-.submitBtn{
+.popup-submitBtn{
   background-color: #333C49;
   color: white;
   border-radius: 5px;
@@ -152,7 +152,7 @@ input[type="file"] {
     width: 70%;
   }
 
-  .row {
+  .popup-row {
     flex-direction: column;
   }
 

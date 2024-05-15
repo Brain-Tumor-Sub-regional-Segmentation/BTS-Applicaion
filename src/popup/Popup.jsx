@@ -94,38 +94,38 @@ const Popup = ({ onClose }) => {
   return (
     <div className="popup-container">
       <div className="popup">
-        <button id="modal-close-button" onClick={onClose}>X</button>
-        <form id="mri-form" onSubmit={handleSubmit}>
-          <div className="row">
-            <div className="col-25">
+        <button id="popup-modal-close-button" onClick={onClose}>X</button>
+        <form id="popup-mri-form" onSubmit={handleSubmit}>
+          <div className="popup-row">
+            <div className="popup-col-25">
               <label htmlFor="process-name" id="name-label">
                 Process Name:
               </label>
             </div>
-            <div className="col-75">
-              <input ref={processName} type="text" className="popUpInput" placeholder="Process name" required />
-              {nameError && <span className="error">{nameError}</span>}
+            <div className="popup-col-75">
+              <input ref={processName} type="text" className="popup-popUpInput" placeholder="Process name" required />
+              {nameError && <span className="popup-error">{nameError}</span>}
             </div>
           </div>
-          <div className="row">
-            <div className='col-25'>
+          <div className="popup-row">
+            <div className='popup-col-25'>
               <label htmlFor="disabledLabel">Upload MRI:</label>
             </div>
-            <div className="col-75">
-              <input type="text" value={"Enter 3 modalities"} id="file-textbox" className='popUpInput disabledPopUpInput' disabled />
-              <label htmlFor="file-upload" className="custom-file-upload" id="file">
-                <i className="fa fa-cloud-upload"></i> Browse Files
+            <div className="popup-col-75">
+              <input type="text" value={"Enter 3 modalities"} id="popup-file-textbox" className='popup-popUpInput popup-disabledPopUpInput' disabled />
+              <label htmlFor="file-upload" className="popup-custom-file-upload" id="popup-file">
+                <i className="popup-fa fa-cloud-upload"></i> Browse Files
               </label>
             </div>
-            <input id="file-upload" type="file" multiple />
+            <input id="popup-file-upload" type="file" multiple />
 
           </div>
-          <div className="row">
-            {fileError && <span className="error">{fileError}</span>}
+          <div className="popup-row">
+            {fileError && <span className="popup-error">{fileError}</span>}
           </div>
-          <div className='row'>
-            <div className='btnDiv'>
-              <input id="submit" type="submit" value={"Submit"} className='submitBtn' />
+          <div className='popup-row'>
+            <div className='popup-btnDiv'>
+              <input id="popup-submit" type="submit" value={"Submit"} className='popup-submitBtn' />
             </div>
           </div>
         </form>

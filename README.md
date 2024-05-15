@@ -1,15 +1,10 @@
-# BTS
-Brain Tumor Segmentation App and more.
 
-## Available Scripts
+  # GpJS
 
-In the project directory, you can run:
+  Note: Please ensure you have installed <code><a href="https://nodejs.org/en/download/">nodejs</a></code>
 
-#### `npm run docker-dev-up`
-
-Create a docker container and runs the react app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
-
-#### `npm run docker-dev-down`
-
-Stops the docker container
+  To preview and run the project on your device:
+  1) Open project folder in <a href="https://code.visualstudio.com/download">Visual Studio Code</a>
+  2) In the terminal, run `npm install`
+  3) Run `npm start` to view project in browser
+  

@@ -1,0 +1,56 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap");
+body {
+  margin: 0;
+  line-height: normal;
+}
+:root {
+  /* fonts */
+  --font-inter: Inter;
+
+  /* font sizes */
+  --font-size-5xl: 24px;
+  --font-size-lgi: 19px;
+  --font-size-smi-9: 12.9px;
+  --font-size-base-5: 15.5px;
+  --font-size-13xl: 32px;
+  --font-size-7xl: 26px;
+  --font-size-11xl: 30px;
+  --font-size-xl: 20px;
+
+  /* Colors */
+  --color-white: #fff;
+  --color-darkslategray: #333c49;
+  --gray: #ebf1fa;
+  --color-black: #000;
+  --color-gray-100: #002844;
+
+  /* Gaps */
+  --gap-base: 16px;
+  --gap-xl: 20px;
+  --gap-7xs-5: 5.5px;
+
+  /* Paddings */
+  --padding-smi: 13px;
+  --padding-9xl-6: 28.6px;
+  --padding-sm: 14px;
+  --padding-8xl: 27px;
+  --padding-12xs-7: 0.7px;
+  --padding-3xs: 10px;
+  --padding-base-6: 15.6px;
+  --padding-3xs-5: 9.5px;
+  --padding-6xs: 7px;
+  --padding-mini: 15px;
+  --padding-44xl-1: 63.1px;
+  --padding-42xl: 61px;
+  --padding-11xl: 30px;
+  --padding-12xl: 31px;
+  --padding-11xs-6: 1.6px;
+  --padding-4xl-7: 23.7px;
+  --padding-5xl: 24px;
+  --padding-13xl: 32px;
+  --padding-13xl-5: 32.5px;
+  --padding-sm-4: 13.4px;
+
+  /* Border radiuses */
+  --br-mid-2: 17.2px;
+}
