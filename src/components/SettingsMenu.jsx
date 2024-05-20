@@ -20,12 +20,11 @@ export default function SettingsMenu() {
   const navigate = useNavigate();
   const {getFirstLetter} = useGetFirstLetter();
   const [firstLetter, setFirstLetter] = useState('A');
-  const {doctorID} = useGetDoctorID()
   
 
-  useEffect(() => {
-    getFirstLetter().then((f) => setFirstLetter(f));
-  }, [firstLetter]);
+  // useEffect(() => {
+  //   getFirstLetter().then((f) => setFirstLetter(f));
+  // }, [firstLetter]);
 
   const handleLogout = (e) => {               
     signOut(auth).then(() => {

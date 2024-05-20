@@ -1,5 +1,5 @@
 import { useGetDoctorID } from './useGetDoctorID';
-import { getDoc, doc } from "fلهirebase/firestore";
+import { getDoc, doc } from "firebase/firestore";
 import { database } from "../config/firebase-config";
 
 export const useGetFirstLetter = () => {
