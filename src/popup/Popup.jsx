@@ -113,7 +113,7 @@ const Popup = ({ onClose }) => {
             </div>
             <div className="popup-col-75">
               <input type="text" value={"Enter 3 modalities"} id="popup-file-textbox" className='popup-popUpInput popup-disabledPopUpInput' disabled />
-              <label htmlFor="file-upload" className="popup-custom-file-upload" id="popup-file">
+              <label htmlFor="popup-file-upload" className="popup-custom-file-upload" id="popup-file">
                 <i className="popup-fa fa-cloud-upload"></i> Browse Files
               </label>
             </div>
