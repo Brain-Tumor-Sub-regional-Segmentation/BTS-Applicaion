@@ -1,11 +1,16 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef} from 'react';
+import { useParams } from 'react-router-dom';
 import './Popup.css';
 import { ref, getDownloadURL, uploadBytesResumable } from "firebase/storage";
-import storage from '../../config/firebase-config';
+import { storage, database } from '../../config/firebase-config';
+import { collection, addDoc} from "firebase/firestore";
+import dayjs from 'dayjs';
+
 
 const Popup = ({ onClose }) => {
   const [nameError, setNameError] = useState('');
   const [fileError, setFileError] = useState('');
+  const patientID = useParams().id;
   const processName = useRef(null);
 
   function handleSubmit(event) {
@@ -23,15 +28,13 @@ const Popup = ({ onClose }) => {
     // Validate files
     const fileUpload = document.getElementById('popup-file-upload');
     const files = Array.from(fileUpload.files);
-
-
-    const storageRef = ref(storage, files[0].name);
-    const uploadTask = uploadBytesResumable(storageRef, files[0]);
+    
     // Upload files
     files.forEach(file => {
-      console.log(file.name);
+      console.log(file);
       console.log(storage);
-      
+      const storageRef = ref(storage, `files/${file.name}`);
+      const uploadTask = uploadBytesResumable(storageRef, file);
 
       uploadTask.on('state_changed',
         (snapshot) => {
@@ -50,8 +53,18 @@ const Popup = ({ onClose }) => {
           console.error('Upload failed', error);
         },
         () => {
-          getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) => {
+          getDownloadURL(uploadTask.snapshot.ref).then(async (downloadURL) => {
             console.log('File available at', downloadURL);
+            const processesCollection = collection(database, 'processes');
+            console.log(processesCollection)
+            console.log({patientID, date: dayjs().toDate(), flair: downloadURL, name: processName.current.value, seg: downloadURL})
+            await addDoc(processesCollection, 
+            {patientID, date: dayjs().toDate(), flair: downloadURL, name: processName.current.value, seg: downloadURL})
+            .then((docRef) => {
+                console.log(`Process ${docRef.id} added successfully`)
+            }).catch((e) => {
+                console.error("Error adding document: ", e);
+            });
           });
         }
       );

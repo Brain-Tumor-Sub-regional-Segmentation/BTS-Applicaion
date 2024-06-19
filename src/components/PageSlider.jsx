@@ -10,11 +10,11 @@ const PageSlider = ({domain, mostRecentAction, moreRecentAction, lessRecentActio
     const [isPopupOpen, setIsPopupOpen] = useState(false);
     const openPopup = () => {
         setIsPopupOpen(true);
-      };
+    };
     
-      const closePopup = () => {
+    const closePopup = () => {
         setIsPopupOpen(false);
-      };
+    };
     
     return (<div className={'list-page-slider-add-btn'}>
         <div className={'list-slider'}>
