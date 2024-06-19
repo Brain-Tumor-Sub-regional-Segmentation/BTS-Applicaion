@@ -1,0 +1,362 @@
+.a {
+  width: 54.2px;
+  height: 52.9px;
+  position: relative;
+  letter-spacing: -0.04em;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  z-index: 1;
+}
+.frameChild,
+.processInner {
+  align-self: stretch;
+  box-sizing: border-box;
+  max-width: 100%;
+}
+.frameChild {
+  flex: 1;
+  position: relative;
+  border-top: 1px solid rgba(0, 40, 68, 0.21);
+}
+.processInner {
+  height: 18.9px;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: flex-start;
+  padding: 0 0 17.9px;
+}
+.vectorIcon {
+  width: 69.7px;
+  height: 64.1px;
+  position: relative;
+  display: none;
+  z-index: 3;
+}
+.frameItem {
+  position: absolute;
+  top: 0;
+  left: 0;
+  border-radius: 50%;
+  width: 100%;
+  height: 100%;
+}
+.image9Icon {
+  /* position: absolute; */
+  /* top: 4.8px; */
+  /* left: 6.9px; */
+  width: 36.3px;
+  height: 29.8px;
+  /* object-fit: contain; */
+  z-index: 1;
+}
+.ellipseParent {
+  width: 49px;
+  
+  height: 40.3px;
+  position: absolute;
+  margin: 0 !important;
+  right: 42px;
+  bottom: 41.7px;
+}
+.mriText {
+  position: relative;
+  letter-spacing: -0.04em;
+  text-shadow: 0 4px 4px #00000040;
+  -webkit-text-stroke: 1px #333c49;
+}
+.mriWrapper {
+  display: flex;
+  justify-content: center; /* Horizontally */
+  align-items: center;  /* Vertically */
+  width: 40%;
+  padding: 3px 0 0;
+  box-sizing: border-box;
+}
+/* .segmentedMri {
+  background-color: red;
+  width: 50%;
+  height: 100%;
+  position: relative;
+  letter-spacing: -0.04em;
+  display: flex;
+  align-items: center;
+  flex-shrink: 0;
+  text-shadow: 0 4px 4px rgba(0, 0, 0, 0.25);
+  -webkit-text-stroke: 1px #333c49;
+  max-width: 100%;
+} */
+.fRAMEA,
+.fRAMEB {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  width: 100%;
+}
+.fRAMEB {
+  justify-content: space-around; /* space between  children horizontally*/
+  /* gap: var(--gap-xl); */
+}
+.fRAMEA {
+  /* padding: 0 14.5px 0 var(--padding-sm); */
+  box-sizing: border-box;
+}
+.frameInner {
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  /* margin: 0 !important; */
+  inset: 0;
+  /* max-width: 100%; */
+  overflow: hidden;
+  /* max-height: 100%; */
+  /* object-fit: cover; */
+}
+.frameInner:hover{
+  cursor: crosshair;
+}
+
+.AddSquareIcon,
+.MinusSquareIcon {
+  height: 36px;
+  width: 36px;
+  position: absolute;
+  top: 5px;
+
+}
+
+.AddSquareIcon {
+  right: 10px;
+}
+
+.MinusSquareIcon {
+  right: 51px;
+}
+.MinusSquareIcon:hover{
+  cursor: pointer;
+}
+.AddSquareIcon:hover{
+  cursor: pointer;
+}
+.frameContainer {
+  width: 300px;
+  height: 300px;
+  box-sizing: border-box;
+  position: relative;
+}
+
+.image10Icon,
+.image9Icon1 {
+  /* position: absolute;
+  top: 133.7px;
+  left: 0;
+  width: 240.8px;
+  height: 133.9px;
+  object-fit: cover;
+  z-index: 1; */
+}
+
+.container {
+  width: 50%;
+}
+
+.image9Parent {
+  width: 300px;
+  display: flex;
+  flex-direction: column-reverse;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+
+.image9Parent .image9Icon1 {
+  width: 300px;
+  height: 150px;
+}
+
+.rotatedImgContainer {
+  width: 300px;
+  height: 150px;
+  position: relative;
+}
+
+/* 300 --> 240, 150 --> 120, 75 --> 60 */
+.image9Parent .image10Icon {
+  /* top: 0; */
+  position: absolute;
+  width: 150px;
+  height: 300px;
+  top: -75px;
+  left: 75px;
+  /* z-index: 2; */
+  transform: rotate(270deg);
+}
+
+
+.frameGroup {
+  width: 100%;
+  height: 300px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.image8Icon {
+  align-self: stretch;
+  flex: 1;
+  position: relative;
+  max-width: 100%;
+  overflow: hidden;
+  max-height: 100%;
+  object-fit: cover;
+  min-width: 241px;
+  min-height: 268px;
+  flex-shrink: 0;
+}
+.image11Icon,
+.image12Icon {
+  position: absolute;
+  top: 133px;
+  left: 0;
+  width: 237.3px;
+  height: 134.2px;
+  object-fit: cover;
+  z-index: 1;
+}
+.image12Icon {
+  top: 0;
+  width: 237.2px;
+  height: 134.1px;
+  z-index: 2;
+}
+.image11Parent {
+  height: 267.2px;
+  width: 237.3px;
+  position: relative;
+  min-width: 237.30000000000015px;
+  flex-shrink: 0;
+}
+.frameParent,
+.image8Parent {
+  display: flex;
+  flex-direction: row;
+  max-width: 100%;
+}
+.image8Parent {
+  width: 608.4px;
+  align-items: flex-start;
+  justify-content: flex-start;
+  min-width: 608.4000000000001px;
+  row-gap: 20px;
+}
+.frameParent {
+  height: 300px;
+  align-self: stretch;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: var(--gap-xl);
+}
+
+.fRAMEAParent,
+.processDate {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  max-width: 100%;
+}
+.fRAMEAParent {
+  align-self: stretch;
+  align-items: flex-end;
+  gap: 27px;
+}
+.processDate {
+  flex: 1;
+  align-items: flex-start;
+  gap: 64.7px;
+}
+.process,
+.processDateWrapper {
+  display: flex;
+  box-sizing: border-box;
+  font-family: var(--font-inter);
+}
+.processDateWrapper {
+  margin: auto;
+  width: 1362.6px;
+  flex-direction: row;
+  display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
+  padding: 0 var(--padding-9xl-6) 0 29px;
+  max-width: 100%;
+  text-align: left;
+  font-size: var(--font-size-5xl);
+  color: var(--color-darkslategray);
+}
+.process {
+  width: 100%;
+  position: relative;
+  background-color: var(--color-white);
+  overflow: hidden;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-content: flex-start;
+  padding: 0 var(--padding-smi) 123.6px 0;
+  gap: var(--gap-base);
+  line-height: normal;
+  letter-spacing: normal;
+  text-align: center;
+  font-size: var(--font-size-11xl);
+  color: var(--color-white);
+}
+@media screen and (max-width: 1300px) {
+  .frameGroup,
+  .image8Parent {
+    flex: 1;
+  }
+  .frameParent {
+    flex-wrap: wrap;
+  }
+}
+@media screen and (max-width: 800px) {
+  .a {
+    font-size: var(--font-size-5xl);
+  }
+  .fRAMEB {
+    flex-wrap: wrap;
+  }
+  .image9Parent {
+    flex: 1;
+  }
+  .frameGroup {
+    flex-wrap: wrap;
+    min-width: 100%;
+  }
+  .image11Parent {
+    flex: 1;
+  }
+  .image8Parent {
+    flex-wrap: wrap;
+    min-width: 100%;
+  }
+  .processDate {
+    gap: 32px;
+  }
+}
+@media screen and (max-width: 450px) {
+  .a {
+    font-size: 18px;
+  }
+  .mri,
+  .segmentedMri {
+    font-size: var(--font-size-lgi);
+  }
+  .frameContainer {
+    flex-wrap: wrap;
+  }
+  .processDate {
+    gap: var(--gap-base);
+  }
+}

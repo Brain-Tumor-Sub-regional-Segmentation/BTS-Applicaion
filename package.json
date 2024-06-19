@@ -1,5 +1,5 @@
 {
-  "name": "bts",
+  "name": "gpjs",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -20,6 +20,9 @@
     "react-dom": "^18.2.0",
     "react-icons": "^5.2.0",
     "react-router-dom": "^6.23.0",
+    "fflate": "^0.8.2",
+    "nifti-reader-js": "^0.6.8",
+    "pako": "^2.1.0",
     "react-scripts": "5.0.1",
     "web-vitals": "^2.1.4"
   },
@@ -30,12 +33,10 @@
     "eject": "react-scripts eject",
     "docker-dev-up": "docker-compose -f docker-compose.yml up",
     "docker-dev-down": "docker-compose -f docker-compose.yml down"
+
   },
   "eslintConfig": {
-    "extends": [
-      "react-app",
-      "react-app/jest"
-    ]
+    "root": true
   },
   "browserslist": {
     "production": [
