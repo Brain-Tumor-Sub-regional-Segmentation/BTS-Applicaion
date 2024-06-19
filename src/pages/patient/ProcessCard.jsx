@@ -12,10 +12,10 @@ const ProcessCard = ({process}) => {
     let localDate = date.toLocaleDateString();
     let localTime = date.toLocaleTimeString();
     const localTimeZone = Intl.DateTimeFormat().resolvedOptions().timeZone;
-
+    console.log(process)
     return (<div className={'process-card'}>
         <div className={'process-card-info'}>
-            <div className={'process-card-name'}>{process.name}</div>
+            <div className={'process-card-name'}>Process name: {process.name}</div>
             <div className={'process-card-subtitle'}> Report </div>
             <div className={'process-card-report'}>
                 {(!fullReport && process.notes.length > 350)? (process.notes.slice(0, 350) + " ...") : process.notes}
@@ -42,7 +42,7 @@ const ProcessCard = ({process}) => {
                     <span style={{fontWeight: "bold"}}> Timezone </span>: {localTimeZone}
                 </div>
                 <div className={'process-view-plot'}>
-                    <button onClick={() => navigate(`/process/${process.id}`)}> Review </button>
+                    <button onClick={() => navigate(`/home/process/${process.id}`)}> Review </button>
                 </div>
             </div>
         </div>

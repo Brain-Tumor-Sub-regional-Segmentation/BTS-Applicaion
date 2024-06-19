@@ -114,6 +114,8 @@ input[type="file"] {
 .popup-disabledPopUpInput {
   width: 70%;
   border-radius: 5px 0 0 5px;
+  font-size: 14px;
+  padding-left: 15px;
 }
 
 #popup-file{
@@ -135,7 +137,27 @@ input[type="file"] {
   display: flex;
   justify-content: center;
 }
+.loading-indicator {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 50px; /* Adjust as needed */
+}
 
+.spinner {
+  border: 4px solid rgba(0, 0, 0, 0.1);
+  border-left-color: #09f;
+  border-radius: 90%;
+  width: 50px;
+  height: 50px;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
 .popup-submitBtn{
   background-color: #333C49;
   color: white;
