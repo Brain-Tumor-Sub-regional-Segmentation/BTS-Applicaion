@@ -1,10 +1,12 @@
 import React, { useState, useEffect, useRef } from "react";
 
-import FrameComponent from "../components/FrameComponent";
+import FrameComponent from "../../components/FrameComponent";
 import styles from "./Process.module.css";
 import * as nifti from "nifti-reader-js";
+import { useParams } from "react-router-dom";
 import { decompressSync } from "fflate";
-const ProcessRefactor = () => {
+import { useGetProcessAndUser } from "../../hooks/useGetProcessAndUser";
+const ProcessView = () => {
   const canvasRef1 = useRef(null);
   const canvasRef1Tumor = useRef(null);
 
@@ -14,11 +16,32 @@ const ProcessRefactor = () => {
   const canvasRef3 = useRef(null);
   const canvasRef3Tumor = useRef(null);
 
-  const [slice, setSlice] = useState(0);
+  const [slice, setSlice] = useState(53);
   const [dims, setDims] = useState([]);
   const [canvasImageData1, setCanvasImageData1] = useState();
   const [arr3d, setArr3d] = useState([]);
   const [arr3dTumor, setArr3dTumor] = useState([]);
+  let { getProcesses } = useGetProcessAndUser()
+  const processID = useParams().id;
+  // const patientName = "Ali";
+  // const date = { seconds: 1718837014, nanoseconds: 874000000 };
+  // const processName = "a";
+  const [processName, setProcessName] = useState("Process");
+  const [date, serDate] = useState({ seconds: 1718837014, nanoseconds: 874000000 });
+  const [patientName, setPatientName] = useState("Patient");
+  useEffect(() => {
+    // // console.log(processID);
+    const p = getProcesses().then((results) => {
+      // console.log(results);
+      setPatientName(results.user.name.split(" ")[0]);
+      setProcessName(results.process.name);
+      serDate(results.process.date);
+      readNIFTI(results.flairBuffer);
+      readNIFTI(results.segBuffer);
+
+    });
+    // console.log(p);
+  }, [processID]);
   function getTypedData(niftiHeader, niftiImage) {
     var typedData;
     if (niftiHeader.datatypeCode === nifti.NIFTI1.TYPE_UINT8) {
@@ -40,11 +63,11 @@ const ProcessRefactor = () => {
     } else {
       return;
     }
-    console.log(typedData);
+    // console.log(typedData);
     return typedData;
   }
   function setCanvasSizes(niftiHeader) {
-    console.log(niftiHeader);
+    // console.log(niftiHeader);
     var canvas1 = document.getElementById("myCanvas1");
     var canvas2 = document.getElementById("myCanvas2");
     var canvas3 = document.getElementById("myCanvas3");
@@ -75,7 +98,7 @@ const ProcessRefactor = () => {
     }
   }
   function readNIFTI(data) {
-    console.log(data);
+    // console.log(data);
 
     var niftiHeader, niftiImage;
 
@@ -87,7 +110,7 @@ const ProcessRefactor = () => {
       setCanvasSizes(niftiHeader);
       niftiImage = nifti.readImage(niftiHeader, data);
       var typedData = getTypedData(niftiHeader, niftiImage);
-      console.log(typedData);
+      // console.log(typedData);
       if (typedData === undefined) {
         return;
       }
@@ -95,10 +118,10 @@ const ProcessRefactor = () => {
       niftiHeader.dims.map((dim) => dims.push(dim));
       if (arr3d.length === 0) {
         convertTo3d(typedData, arr3d);
-        console.log(arr3d);
+        // console.log(arr3d);
       } else {
         convertTo3d(typedData, arr3dTumor);
-        console.log(arr3dTumor);
+        // console.log(arr3dTumor);
       }
       // draw slices
       drawCanvas(canvasRef1.current, slice, 1);
@@ -107,11 +130,11 @@ const ProcessRefactor = () => {
     }
   }
   function firstDimesion(canvas, sliceIndex) {
-    if(arr3dTumor.length === 0){
+    if (arr3dTumor.length === 0) {
       return 0;
     }
     const seg = arr3dTumor.length > 0;
-    console.log(seg);
+    // console.log(seg);
     let ctxTumor;
     let newTumorImg;
     let flattenedSliceTumor;
@@ -127,7 +150,7 @@ const ProcessRefactor = () => {
     }
     // Take a slice at the first dimension (depth)
     const sliced3d = arr3d[sliceIndex];
-    console.log(sliced3d.length, sliced3d[0].length);
+    // console.log(sliced3d.length, sliced3d[0].length);
     // Flatten the 2D slice array
     const flattenedSlice = sliced3d.flat();
 
@@ -177,12 +200,12 @@ const ProcessRefactor = () => {
       ctxTumor.putImageData(newTumorImg, 0, 0);
     }
     setCanvasImageData1(newCanvasImageData1);
-    const dataURL = canvas.toDataURL();
-    img.src = dataURL; // Set the data URL as the source of the image
-    console.log(img);
+    // const dataURL = canvas.toDataURL();
+    // img.src = dataURL; // Set the data URL as the source of the image
+    // // console.log(img);
     // Append the image element to the document body or any other desired location
     // Add event listener to track mouse movement
-    document.body.appendChild(img);
+    // document.body.appendChild(img);
   }
   function secondDimesion(canvas, sliceIndex) {
     const ctx = canvas.getContext("2d");
@@ -193,13 +216,13 @@ const ProcessRefactor = () => {
     let newTumorImg;
     const segmenetedCanvas = canvasRef2Tumor.current;
     if (seg) {
-      console.log(segmenetedCanvas);
+      // console.log(segmenetedCanvas);
       segmenetedCanvas.width = dims[2];
       segmenetedCanvas.height = dims[3];
       ctxTumor = segmenetedCanvas.getContext("2d");
       newTumorImg = ctxTumor.createImageData(canvas.width, canvas.height);
     }
-    console.log(typeof dims[2], typeof dims[3]);
+    // console.log(typeof dims[2], typeof dims[3]);
     const canvasImageData = ctx.createImageData(
       parseInt(dims[2]),
       parseInt(dims[3])
@@ -252,7 +275,7 @@ const ProcessRefactor = () => {
         }
       }
     }
-    // console.log(canvas.width, canvas.height);
+    // // console.log(canvas.width, canvas.height);
     ctx.putImageData(canvasImageData, 0, 0);
     if (seg) {
       ctxTumor.putImageData(newTumorImg, 0, 0);
@@ -268,7 +291,7 @@ const ProcessRefactor = () => {
   function thirdDimesion(canvas, sliceIndex) {
     const ctx = canvas.getContext("2d");
 
-    console.log(parseInt(sliceIndex));
+    // console.log(parseInt(sliceIndex));
     canvas.width = dims[3];
     canvas.height = dims[1];
     const seg = arr3dTumor.length > 0;
@@ -276,20 +299,20 @@ const ProcessRefactor = () => {
     let newTumorImg;
     const segmenetedCanvas = canvasRef3Tumor.current;
     if (seg) {
-      console.log(segmenetedCanvas);
+      // console.log(segmenetedCanvas);
       segmenetedCanvas.width = dims[3];
       segmenetedCanvas.height = dims[1];
       ctxTumor = segmenetedCanvas.getContext("2d");
       newTumorImg = ctxTumor.createImageData(canvas.width, canvas.height);
     }
-    console.log(dims);
+    // console.log(dims);
     const canvasImageData = ctx.createImageData(dims[3], dims[1]);
 
     for (let i = 0; i < arr3d.length; i++) {
       for (let j = 0; j < arr3d[0][0].length; j++) {
         const index = j * canvas.width + i;
         var value = arr3d[i][sliceIndex][j];
-        // console.log(value);
+        // // console.log(value);
         canvasImageData.data[index * 4] = value & 0xff; // Red channel
         canvasImageData.data[index * 4 + 1] = value & 0xff; // Green channel
         canvasImageData.data[index * 4 + 2] = value & 0xff; // Blue channel
@@ -320,7 +343,7 @@ const ProcessRefactor = () => {
         }
       }
     }
-    console.log(canvasImageData);
+    // console.log(canvasImageData);
     if (seg) {
       ctxTumor.putImageData(newTumorImg, 0, 0);
       const imgTumor = document.getElementById("canvas33Tumor");
@@ -332,15 +355,15 @@ const ProcessRefactor = () => {
 
     const dataURL = canvas.toDataURL();
     img1.src = dataURL; // Set the data URL as the source of the image
-    console.log(img1);
-    // console.log(canvasImageData);
+    // console.log(img1);
+    // // console.log(canvasImageData);
     // document.body.appendChild(img1);
   }
   function drawCanvas(canvas, slice, index) {
-    console.log(arr3d);
+    // console.log(arr3d);
 
     const sliceIndex = parseInt(slice);
-    console.log(slice);
+    // console.log(slice);
 
     if (index === 1) {
       firstDimesion(canvas, sliceIndex, dims);
@@ -355,7 +378,7 @@ const ProcessRefactor = () => {
     var fileType = typeof File;
 
     if (fileType === "undefined") {
-      return function () {};
+      return function () { };
     }
 
     if (File.prototype.slice) {
@@ -377,15 +400,15 @@ const ProcessRefactor = () => {
     if (file === undefined) {
       return;
     }
-    console.log(file);
+    // console.log(file);
     var blob = makeSlice(file, 0, file.size);
 
     var reader = new FileReader();
 
     reader.onloadend = function (evt) {
-      console.log(evt.target);
+      // console.log(evt.target);
       if (evt.target.readyState === FileReader.DONE) {
-        console.log(file.name, evt.target.result);
+        // console.log(file.name, evt.target.result);
         readNIFTI(evt.target.result);
       }
     };
@@ -398,7 +421,7 @@ const ProcessRefactor = () => {
     readFile(files[0]);
   }
   function clickedCanvas(event) {
-    if(arr3dTumor.length === 0){
+    if (arr3dTumor.length === 0) {
       return;
     }
     const canvas1Object = canvasRef1.current;
@@ -407,14 +430,14 @@ const ProcessRefactor = () => {
     const rect = canvas1Object.getBoundingClientRect();
     const x = ((event.clientX - rect.left) / 300.0) * dims[1];
     const y = ((event.clientY - rect.top) / 300.0) * dims[2];
-    console.log(x, y);
+    // console.log(x, y);
     // Clear previous drawings
     ctx.clearRect(0, 0, canvas1Object.width, canvas1Object.height);
-    console.log(canvasImageData1);
+    // console.log(canvasImageData1);
     ctx.putImageData(canvasImageData1, 0, 0);
     const rotatedX = canvas1Object.width - x;
     const rotatedY = canvas1Object.height - y;
-    console.log(rotatedX, rotatedY);
+    // console.log(rotatedX, rotatedY);
     ctx.beginPath();
     ctx.moveTo(0, rotatedY);
     ctx.lineTo(canvas1Object.width, rotatedY);
@@ -425,7 +448,7 @@ const ProcessRefactor = () => {
     ctx.lineTo(rotatedX, 0);
     ctx.strokeStyle = "white";
     ctx.stroke();
-    console.log(canvas1Object.width, canvas1Object.height);
+    // console.log(canvas1Object.width, canvas1Object.height);
     drawOtherCanvas(rotatedX, rotatedY, dims);
   }
   function drawOtherCanvas(rotatedX, rotatedY, dims) {
@@ -442,6 +465,7 @@ const ProcessRefactor = () => {
       drawCanvas(canvasRef1.current, slice, 1, arr3d, dims);
     }
   }
+
   return (
     <div className={styles.process}>
 
@@ -449,9 +473,8 @@ const ProcessRefactor = () => {
       <section className={styles.processDateWrapper}>
 
         <div className={styles.processDate}>
-          <FrameComponent />
-          <div className={styles.fRAMEAParent}>
-          <input type="file" onChange={handleFileSelect} id="zoomIn" multiple />
+          <FrameComponent patientName={patientName} date={date} processName={processName} />          <div className={styles.fRAMEAParent}>
+            <input type="file" onChange={handleFileSelect} id="zoomIn" multiple />
 
             <div className={styles.fRAMEA}>
               <div className={styles.fRAMEB}>
@@ -608,4 +631,4 @@ const ProcessRefactor = () => {
   );
 };
 
-export default ProcessRefactor;
+export default ProcessView;

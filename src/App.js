@@ -11,6 +11,7 @@ import Patients from './pages/patient-list/PatientList';
 import Patient from "./pages/patient/Patient";
 import SignUp from "./pages/sign-up/SignUp"
 import MainLayout from "./pages/main-layout/MainLayout";
+import ProcessView from "./pages/process/Processview";
 
 function App() {
   const action = useNavigationType();
@@ -57,7 +58,7 @@ function App() {
         <Route path='/home/patient/:id' element={<Patient/>} />
         <Route path='/home/newPatient' element={<NewPatient />} />
         <Route path='/home/newProcess' element={ <div> add Process </div> } />
-        <Route path='/home/process/:id' element={ <div> Process Page </div> } />
+        <Route path='/home/process/:id' element={ <ProcessView/> } />
       </Route>
       <Route path='*' element={ <div> NotFound </div> } />
     </Routes>

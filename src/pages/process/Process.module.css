@@ -147,16 +147,7 @@
   position: relative;
 }
 
-.image10Icon,
-.image9Icon1 {
-  /* position: absolute;
-  top: 133.7px;
-  left: 0;
-  width: 240.8px;
-  height: 133.9px;
-  object-fit: cover;
-  z-index: 1; */
-}
+
 
 .container {
   width: 50%;
@@ -296,6 +287,7 @@
   color: var(--color-darkslategray);
 }
 .process {
+  margin: 50px;
   width: 100%;
   position: relative;
   background-color: var(--color-white);
