@@ -1,12 +1,21 @@
 import {useNavigate} from "react-router-dom";
 import {FaStepBackward, FaStepForward, FaFastForward, FaFastBackward, FaPlus} from "react-icons/fa";
-
+import {useState} from "react";
+import Popup from "../pages/popup/Popup";
 import './PageSlider.css'
 
 const PageSlider = ({domain, mostRecentAction, moreRecentAction, lessRecentAction, leastRecentAction, notes}) => {
     let navigate = useNavigate();
     console.log(notes)
-
+    const [isPopupOpen, setIsPopupOpen] = useState(false);
+    const openPopup = () => {
+        setIsPopupOpen(true);
+    };
+    
+    const closePopup = () => {
+        setIsPopupOpen(false);
+    };
+    
     return (<div className={'list-page-slider-add-btn'}>
         <div className={'list-slider'}>
             <div className={'list-slider-btns'}>
@@ -35,12 +44,15 @@ const PageSlider = ({domain, mostRecentAction, moreRecentAction, lessRecentActio
         <button className={'list-add-btn'}
                     onClick={() => {
                         if (domain === 'patients') navigate('/home/newPatient')
-                        if (domain === 'patient') navigate('/home/newProcess')
+                        if (domain === 'patient') {
+                                openPopup()
+                        }
                     }}>
             <FaPlus/>
             {domain === 'patients' && (<span className={'list-add-btn-txt'}> Add Patient </span>)}
             {domain === 'patient' && (<span className={'list-add-btn-txt'}> Add Process </span>)}
             </button>
+            {isPopupOpen && <Popup onClose={closePopup} />}
         </div>
         </div>
     )
